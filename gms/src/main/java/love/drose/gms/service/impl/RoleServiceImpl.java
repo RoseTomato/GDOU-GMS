@@ -10,7 +10,8 @@ import tk.mybatis.mapper.util.StringUtil;
 import java.util.List;
 
 /**
- * Created by Administrator on 2015/11/18.
+ * 角色Service实现类.
+ * Created by lovedrose on 2015/11/18.
  */
 @Service("roleService")
 public class RoleServiceImpl extends BaseService<Role> implements RoleService {

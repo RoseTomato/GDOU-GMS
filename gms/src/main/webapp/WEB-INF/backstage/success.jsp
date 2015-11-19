@@ -5,6 +5,5 @@
 </head>
 <body>
     success!!
-${role.name}
 </body>
 </html>

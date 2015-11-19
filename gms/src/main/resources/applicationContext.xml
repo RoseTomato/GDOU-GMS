@@ -40,9 +40,6 @@
                         <value>
                             dialect=mysql
                             reasonable=true
-                            supportMethodsArguments=true
-                            returnPageInfo=check
-                            params=count=countSql
                         </value>
                     </property>
                 </bean>

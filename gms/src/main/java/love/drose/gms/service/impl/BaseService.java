@@ -1,9 +1,12 @@
 package love.drose.gms.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import love.drose.gms.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.Mapper;
+import tk.mybatis.mapper.entity.Example;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 /**
@@ -12,6 +15,8 @@ import java.util.List;
  */
 public abstract class BaseService<T> implements IService<T> {
 
+    private Class<T> clazz;
+
     @Autowired
     protected Mapper<T> mapper;
 
@@ -19,9 +24,15 @@ public abstract class BaseService<T> implements IService<T> {
         return mapper;
     }
 
+    public BaseService() {
+        ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
+        this.clazz = (Class<T>) pt.getActualTypeArguments()[0];
+
+    }
+
     @Override
-    public T selectByKey(Object key) {
-        return mapper.selectByPrimaryKey(key);
+    public T findById(Object id) {
+        return mapper.selectByPrimaryKey(id);
     }
 
     @Override
@@ -40,8 +51,8 @@ public abstract class BaseService<T> implements IService<T> {
     }
 
     @Override
-    public int deleteByKey(Object key) {
-        return mapper.deleteByPrimaryKey(key);
+    public int deleteById(Object id) {
+        return mapper.deleteByPrimaryKey(id);
     }
 
     @Override
@@ -50,7 +61,7 @@ public abstract class BaseService<T> implements IService<T> {
     }
 
     @Override
-    public int updateAll(T model) {
+    public int update(T model) {
         return mapper.updateByPrimaryKey(model);
     }
 
@@ -62,5 +73,15 @@ public abstract class BaseService<T> implements IService<T> {
     @Override
     public List<T> selectByExample(Object example) {
         return mapper.selectByExample(example);
+    }
+
+    @Override
+    public List<T> getPageData(int pageNum, int pageSize) {
+        Example example = new Example(clazz);
+        Example.Criteria criteria = example.createCriteria();
+
+        // 分页查询
+        PageHelper.startPage(pageNum, pageSize);
+        return selectByExample(example);
     }
 }

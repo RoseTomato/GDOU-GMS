@@ -1,5 +1,8 @@
 package love.drose.gms.models;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+
 /**
  * 角色模型
  * Created by lovedrose on 2015/11/18.
@@ -8,6 +11,8 @@ public class Role {
     /**
      * 编号
      */
+    @Id
+    @Column(name = "Id")
     private Integer id;
     /**
      * 角色名
