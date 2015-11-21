@@ -15,6 +15,8 @@
         <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
 
+    <context:annotation-config/>
+
     <!--导入资源文件-->
     <context:property-placeholder location="classpath:db.properties"/>
 
@@ -82,4 +84,38 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
+
+    <!--配置权限管理器-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="myShiro"/>
+        <property name="cacheManager" ref="cacheManager"/>
+    </bean>
+
+    <!--配置shiro的过滤器工厂，id-shiroFilter要和我们在web.xml里面配置一致-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!--调用权限管理器-->
+        <property name="securityManager" ref="securityManager"/>
+        <!--配置登陆请求地址-->
+        <property name="loginUrl" value="/backstageEntrance"/>
+        <!--登陆成功后的跳转地址-->
+        <property name="successUrl" value="/WEB-INF/backstage/backstageIndex"/>
+        <!--不在权限范围-->
+        <property name="unauthorizedUrl" value="/403"/>
+
+        <!--配置权限-->
+        <property name="filterChainDefinitions">
+            <value>
+                <!--anon表示无需任何权限即可以访问-->
+                /**=anon
+                <!--以角色作为权限控制-->
+                <!--/backstageHandler=roles[用户管理员]-->
+                <!--所有请求都要经过登陆验证-->
+                <!--/**=authc-->
+            </value>
+        </property>
+    </bean>
+
+    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 </beans>

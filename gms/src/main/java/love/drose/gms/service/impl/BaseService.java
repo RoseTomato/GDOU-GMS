@@ -36,6 +36,17 @@ public abstract class BaseService<T> implements IService<T> {
     }
 
     @Override
+    public T findByName(String name) {
+        Example example = new Example(clazz);
+        Example.Criteria criteria = example.createCriteria();
+
+        criteria.andLike("name",  "%" + name + "%");
+        List<T> list = selectByExample(example);
+
+        return list.size() > 0 ? list.get(0) : null;
+    }
+
+    @Override
     public T findOne(T t) {
         return mapper.selectOne(t);
     }

@@ -17,4 +17,5 @@ public interface RoleService extends IService<Role> {
      * @return
      */
     List<Role> selectByRole(Role role, int page, int rows);
+
 }

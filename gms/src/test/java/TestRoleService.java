@@ -2,12 +2,13 @@ import love.drose.gms.models.Role;
 import love.drose.gms.service.RoleService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import tk.mybatis.mapper.entity.Example;
+import tk.mybatis.mapper.util.StringUtil;
 
 import java.util.List;
 
 /**
- * RolseService测试单元.
- * Created by lovedrose on 2015/11/19.
+ * Created by Administrator on 2015/11/21.
  */
 public class TestRoleService extends BaseTest {
 
@@ -16,12 +17,26 @@ public class TestRoleService extends BaseTest {
 
     @Test
     public void testSave() {
-        Role role = null;
-        for (int i = 10; i < 20; i++) {
-            role = new Role();
-            role.setName(i+"号管理员");
-            roleService.save(role);
-        }
+        Role role1 = new Role();
+        Role role2 = new Role();
+        Role role3 = new Role();
+        Role role4 = new Role();
+        Role role5 = new Role();
+        Role role6 = new Role();
+
+        role1.setName("超级管理员");
+        role2.setName("组织结构管理员");
+        role3.setName("用户管理员");
+        role4.setName("场地管理员");
+        role5.setName("器材管理员");
+        role6.setName("赛事管理员");
+
+        roleService.save(role1);
+        roleService.save(role2);
+        roleService.save(role3);
+        roleService.save(role4);
+        roleService.save(role5);
+        roleService.save(role6);
     }
 
     @Test
@@ -69,4 +84,19 @@ public class TestRoleService extends BaseTest {
             System.out.println(role);
         }
     }
+
+    @Test
+    public void testSelectByExample() {
+        Role role = new Role();
+        role.setName("超级管理员");
+        Example example = new Example(Role.class);
+        Example.Criteria criteria = example.createCriteria();
+        if (StringUtil.isNotEmpty(role.getName())) {
+            criteria.andLike("name", "%" + role.getName() + "%");
+        }
+
+        List<Role> roles = roleService.selectByExample(example);
+        System.out.println(roles);
+    }
+
 }

@@ -19,6 +19,13 @@ public interface IService<T> {
     T findById(Object id);
 
     /**
+     * 根据对象名称查找其信息
+     * @param name
+     * @return
+     */
+    T findByName(String name);
+
+    /**
      * 根据实体不为null的条件查询
      * @param t - 模型
      * @return - 模型信息

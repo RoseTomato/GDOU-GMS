@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -95,8 +96,8 @@
         <div class="headerNav">
             <a class="logo" href="${pageContext.request.contextPath}/WEB-INF/backstage/backstageIndex.jsp">标志</a>
             <ul class="nav">
-                <li><a>欢迎您，lovedrose</a></li>
-                <li><a href="${pageContext.request.contextPath}/WEB-INF/backstage/success.jsp">退出</a></li>
+                <li><a>欢迎您，<shiro:principal/></a></li>
+                <li><a href="${pageContext.request.contextPath}/logoutBackstage">退出</a></li>
             </ul>
         </div>
 
@@ -112,18 +113,20 @@
             <div class="toggleCollapse"><h2>主菜单</h2><div>收缩</div></div>
 
             <div class="accordion" fillSpace="sidebar">
+                <shiro:hasAnyRoles name="超级管理员,组织结构管理员">
                 <div class="accordionHeader">
                     <h2><span>Folder</span>组织结构管理</h2>
                 </div>
                 <div class="accordionContent">
                     <ul class="tree treeFolder">
-                        <li><a>管理员管理</a>
-                            <ul>
-                                <li><a href="" target="navTab" rel="">新增管理员</a></li>
-                                <li><a href="" target="navTab" rel="">查询管理员</a></li>
-                            </ul>
-                        </li>
-
+                            <li><a>管理员管理</a>
+                                <ul>
+                                    <shiro:hasPermission name="新增管理员">
+                                    <li><a href="" target="navTab" rel="">新增管理员</a></li>
+                                    </shiro:hasPermission>
+                                    <li><a href="" target="navTab" rel="">查询管理员</a></li>
+                                </ul>
+                            </li>
                         <li><a>角色管理</a>
                             <ul>
                                 <li><a href="" target="navTab" rel="">新增角色</a></li>
@@ -139,6 +142,9 @@
                         </li>
                     </ul>
                 </div>
+                </shiro:hasAnyRoles>
+
+                <shiro:hasAnyRoles name="超级管理员,用户管理员">
                 <div class="accordionHeader">
                     <h2><span>Folder</span>用户管理</h2>
                 </div>
@@ -148,6 +154,8 @@
                         <li><a href="" target="navTab" rel="">查询用户</a></li>
                     </ul>
                 </div>
+                </shiro:hasAnyRoles>
+                <shiro:hasAnyRoles name="超级管理员,场地管理员">
                 <div class="accordionHeader">
                     <h2><span>Folder</span>场地管理</h2>
                 </div>
@@ -157,6 +165,8 @@
                         <li><a href="" target="navTab" rel="">查询场地</a></li>
                     </ul>
                 </div>
+                </shiro:hasAnyRoles>
+                <shiro:hasAnyRoles name="超级管理员,器材管理员">
                 <div class="accordionHeader">
                     <h2><span>Folder</span>器材管理</h2>
                 </div>
@@ -166,6 +176,8 @@
                         <li><a href="" target="navTab" rel="">查询场地</a></li>
                     </ul>
                 </div>
+                </shiro:hasAnyRoles>
+                <shiro:hasAnyRoles name="超级管理员,赛事管理员">
                 <div class="accordionHeader">
                     <h2><span>Folder</span>赛事管理</h2>
                 </div>
@@ -175,6 +187,7 @@
                         <li><a href="" target="navTab" rel="">查询场地</a></li>
                     </ul>
                 </div>
+                </shiro:hasAnyRoles>
             </div>
         </div>
     </div>

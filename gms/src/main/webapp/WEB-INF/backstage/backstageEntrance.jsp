@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -9,15 +9,15 @@
     <title>广东海洋大学-体育馆-后台管理系统-入口</title>
     <!-- CSS -->
     <link rel="stylesheet"
-          href="./backstageEntrance/style.css"
+          href="${pageContext.request.contextPath}/backstageEntrance/style.css"
           type="text/css" />
 
     <!-- Javascript libraries (jQuery and Selectivizr) used for the custom checkbox ->
 
 	<!--[if (gte IE 6)&(lte IE 8)]>
-    <script type="text/javascript" src="./backstageEntrance/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="./backstageEntrance/selectivizr.js"></script>
-    <noscript><link rel="stylesheet" href="./backstageEntrance/fallback.css" /></noscript>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/backstageEntrance/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/backstageEntrance/selectivizr.js"></script>
+    <noscript><link rel="stylesheet" href="${pageContext.request.contextPath}/backstageEntrance/fallback.css" /></noscript>
     <![endif]-->
 
     <script type="text/javascript">
@@ -44,13 +44,13 @@
     </script>
 </c:if>
 <div id="container">
-    <form action="managerHandler/login"
+    <form action="${pageContext.request.contextPath}/loginBackstage"
           method="post" onsubmit="return validate()">
         <div class="login">登陆窗口</div>
         <div class="username-text">用户名:</div>
         <div class="password-text">密码:</div>
         <div class="username-field">
-            <input type="text" name="name" id="username"
+            <input type="text" name="username" id="username"
                    placeholder="请输入用户名" />
         </div>
         <div class="password-field">

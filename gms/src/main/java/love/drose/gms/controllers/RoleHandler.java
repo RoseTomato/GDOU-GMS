@@ -10,9 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by lovedrose on 2015/11/18.
  */
 @Controller
-@RequestMapping("/role")
+@RequestMapping("/roleHandler")
 public class RoleHandler {
 
     @Autowired
     private RoleService roleService;
+
+    @RequestMapping("/testFindById")
+    public String testFindById(Integer id) {
+        System.out.println(roleService.findById(id));
+        return "success";
+    }
 }

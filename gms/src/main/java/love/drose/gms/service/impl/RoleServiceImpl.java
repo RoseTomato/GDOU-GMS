@@ -3,6 +3,8 @@ package love.drose.gms.service.impl;
 import com.github.pagehelper.PageHelper;
 import love.drose.gms.models.Role;
 import love.drose.gms.service.RoleService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.util.StringUtil;
@@ -15,8 +17,13 @@ import java.util.List;
  */
 @Service("roleService")
 public class RoleServiceImpl extends BaseService<Role> implements RoleService {
+
+    private static Logger logger = LogManager.getLogger(RoleServiceImpl.class.getName());
+
     @Override
     public List<Role> selectByRole(Role role, int page, int rows) {
+        logger.debug("in <==");
+
         Example example = new Example(Role.class);
         Example.Criteria criteria = example.createCriteria();
         if (StringUtil.isNotEmpty(role.getName())) {
@@ -29,6 +36,7 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
         // 分页查询
         PageHelper.startPage(page, rows);
 
+        logger.debug("out ==>");
         return selectByExample(example);
     }
 }
