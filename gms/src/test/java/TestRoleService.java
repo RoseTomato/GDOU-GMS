@@ -1,5 +1,6 @@
 import love.drose.gms.models.Role;
-import love.drose.gms.service.RoleService;
+import love.drose.gms.services.RoleService;
+import love.drose.gms.utils.Page;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
@@ -77,8 +78,8 @@ public class TestRoleService extends BaseTest {
     }
 
     @Test
-    public void testGetPageData() {
-        List<Role> roles = roleService.getPageData(1, 10);
+    public void getPageList() {
+        List<Role> roles = roleService.getPageList(1, 10);
         for (int i = 0; i < roles.size(); i++) {
             Role role = roles.get(i);
             System.out.println(role);
@@ -97,6 +98,20 @@ public class TestRoleService extends BaseTest {
 
         List<Role> roles = roleService.selectByExample(example);
         System.out.println(roles);
+    }
+
+    @Test
+    public void testFindRoles() {
+        System.out.println(roleService.findRoles());
+    }
+
+    @Test
+    public void testGetPageData() {
+        Page page =  roleService.getPageData(1, 10);
+        List<Role> list = page.getList();
+        for (Role role : list) {
+            System.out.println(role);
+        }
     }
 
 }

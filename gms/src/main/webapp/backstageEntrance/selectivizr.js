@@ -54,7 +54,7 @@ References:
 		"MooTools"							: "$$",
 		"DOMAssistant"						: "*.$", 
 		"Prototype"							: "$$",
-		"YAHOO"								: "*.util.Selector.query",
+		"YAHOO"								: "*.utils.Selector.query",
 		"Sizzle"							: "*", 
 		"jQuery"							: "*",
 		"dojo"								: "*.query"

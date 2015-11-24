@@ -67,7 +67,7 @@
     <!--切面-->
     <aop:aspectj-autoproxy/>
     <aop:config>
-        <aop:pointcut id="appService" expression="execution(* love.drose.gms.service..*Service*.*(..))"/>
+        <aop:pointcut id="appService" expression="execution(* love.drose.gms.services..*Service*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="appService"/>
     </aop:config>
 
@@ -118,4 +118,21 @@
 
     <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <!--jackson-->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="mappingJacksonHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
 </beans>

@@ -1,5 +1,6 @@
-package love.drose.gms.service;
+package love.drose.gms.services;
 
+import love.drose.gms.utils.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -86,7 +87,15 @@ public interface IService<T> {
      * @param pageSize - 页面大小
      * @return
      */
-    List<T> getPageData(int pageNum, int pageSize);
+    List<T> getPageList(int pageNum, int pageSize);
+
+    /**
+     * 获取获取分页数据，并返回分页对象
+     * @param pageNum - 当前页码
+     * @param pageSize - 页面大小
+     * @return 分页对象
+     */
+    Page getPageData(int pageNum, int pageSize);
 
     //TODO others...
 }

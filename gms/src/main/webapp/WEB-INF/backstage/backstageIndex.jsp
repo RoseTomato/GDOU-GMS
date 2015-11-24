@@ -75,8 +75,8 @@
     <script type="text/javascript">
         $(function(){
             DWZ.init("${pageContext.request.contextPath}/dwz/dwz.frag.xml", {
-                loginUrl:"./login_dialog.html", loginTitle:"登录",	// 弹出登录对话框
-//		loginUrl:"login.html",	// 跳到登录页面
+//                loginUrl:"", loginTitle:"登录",	// 弹出登录对话框
+		loginUrl:"${pageContext.request.contextPath}/gms/backstageEntrance",	// 跳到登录页面
                 statusCode:{ok:200, error:300, timeout:301}, //【可选】
                 pageInfo:{pageNum:"pageNum", numPerPage:"numPerPage", orderField:"orderField", orderDirection:"orderDirection"}, //【可选】
                 debug:false,	// 调试模式 【true|false】
@@ -122,9 +122,9 @@
                             <li><a>管理员管理</a>
                                 <ul>
                                     <shiro:hasPermission name="新增管理员">
-                                    <li><a href="" target="navTab" rel="">新增管理员</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/managerHandler/forwardAddManager" target="navTab">新增管理员</a></li>
                                     </shiro:hasPermission>
-                                    <li><a href="" target="navTab" rel="">查询管理员</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/managerHandler/listManager?pageNum=1&pageSize=10" target="navTab" rel="showManagers" title="管理员列表">查询管理员</a></li>
                                 </ul>
                             </li>
                         <li><a>角色管理</a>

@@ -1,5 +1,5 @@
 import love.drose.gms.models.Privilege;
-import love.drose.gms.service.PrivilegeService;
+import love.drose.gms.services.PrivilegeService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

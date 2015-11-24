@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="off">
+    <appenders>
+        <!-- 在控制台上打印输出 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- 控制台上只输出level及以上级别的信息，其他的拒绝 -->
+            <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %class{36} line:%L %M - %msg%xEx%n"/>
+        </Console>
+
+        <!-- 将信息输出到文件上，这个log日志会自动清空（由append属性决定 ）-->
+        <File name="log" fileName="log/tmp.log" append="true">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} line:%L %M - %msg%xEx%n" />
+        </File>
+
+        <!-- 每次打印输出的大小超过2MB，则这size大小的日志会自动存入按年份-月份建立的文件下面并进行压缩，作为存档 -->
+        <RollingFile  name="RollingFile" fileName="logs/app.log" filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.zip">
+            <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} line:%L %M - %msg%xEx%n"/>
+            <SizeBasedTriggeringPolicy size="2MB" />
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <!-- 级别关系：trace<debug<info<warn<error<fatal  ，当级别>=某一级别，后面的级别都会输出-->
+        <!-- 指定该logger的输出级别 -->
+        <!-- 若不关闭additivity，则会打印输出两次 -->
+        <!--     <logger name="com.rose.test.Log4J2Test" level="debugs" additivity="false">
+                <appender-ref ref="Console"/>
+            </logger> -->
+
+        <!-- 没有指定输出级别的都是error（默认） -->
+        <root level="trace">
+            <appender-ref ref="log"/>
+            <appender-ref ref="RollingFile"/>
+            <appender-ref ref="Console"/>
+        </root>
+    </loggers>
+</configuration>

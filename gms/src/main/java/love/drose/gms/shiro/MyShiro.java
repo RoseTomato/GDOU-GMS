@@ -2,9 +2,10 @@ package love.drose.gms.shiro;
 
 import love.drose.gms.models.Manager;
 import love.drose.gms.models.Role;
-import love.drose.gms.service.ManagerService;
-import love.drose.gms.service.PrivilegeService;
-import love.drose.gms.service.RoleService;
+import love.drose.gms.services.ManagerService;
+import love.drose.gms.services.PrivilegeService;
+import love.drose.gms.services.RoleService;
+import love.drose.gms.utils.MD5Util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.apache.shiro.authc.*;
@@ -41,7 +42,7 @@ public class MyShiro extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        logger.debug("in <==");
+        logger.debug("in <== [principals:" + principals + "]");
 
         // 获取登陆时输入的用户名
         String loginName = (String) principals.fromRealm(getName()).iterator().next();
@@ -64,7 +65,7 @@ public class MyShiro extends AuthorizingRealm {
             logger.debug("out ==>");
             return info;
         }
-        logger.debug("out ==>");
+        logger.debug("out ==> null");
         return null;
     }
 
@@ -76,19 +77,24 @@ public class MyShiro extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        logger.debug("in ==>");
+        String password = String.valueOf(((UsernamePasswordToken) token).getPassword());
+        logger.debug("in ==> [Principal:"+token.getPrincipal()+", password:" + password + "]");
         // UsernamePasswordToken 对象用来存放提交的登陆信息
         UsernamePasswordToken upt = (UsernamePasswordToken) token;
 
+        // 获取登陆时输入的密码，并使用md5算法进行加密，在赋值给token的password属性
+        String md5Password = MD5Util.getMD5String(password);
+        ((UsernamePasswordToken) token).setPassword(md5Password.toCharArray());
+
         // 查出是否有此管理员
         Manager manager = managerService.findByUsername(upt.getUsername());
-        // 测试：假设存在
+
         if(manager != null) {
             logger.debug("out ==>");
             return new SimpleAuthenticationInfo(manager.getUsername(), manager.getPassword(), getName());
         }
 
-        logger.debug("out ==>");
+        logger.debug("out ==> null");
         return null;
     }
 }

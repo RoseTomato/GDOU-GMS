@@ -14,6 +14,7 @@
     </context:component-scan>
 
     <!--springMVC 注解-->
+    <!--<mvc:annotation-driven conversion-service="conversionService"/>-->
     <mvc:annotation-driven/>
 
     <!--视图解析器-->
@@ -22,6 +23,23 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--文件上传：multipartResolver处理器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--编码格式-->
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!--文件总和上限 10M-->
+        <property name="maxUploadSize" value="10485760"/>
+    </bean>
+
     <!--当url请求找不到映射时，执行该处理器-->
     <mvc:default-servlet-handler/>
+
+    <!--自定义转换器-->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="love.drose.gms.converters.MyDateConverter"></bean>
+            </set>
+        </property>
+    </bean>
 </beans>

@@ -1,9 +1,9 @@
-package love.drose.gms.service.impl;
+package love.drose.gms.services.impl;
 
 import love.drose.gms.models.Manager;
 import love.drose.gms.models.Role;
-import love.drose.gms.service.ManagerService;
-import love.drose.gms.service.RoleService;
+import love.drose.gms.services.ManagerService;
+import love.drose.gms.services.RoleService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,5 +77,26 @@ public class ManagerServiceImpl extends BaseService<Manager> implements ManagerS
 
         logger.debug("out ==>");
         return null;
+    }
+
+    @Override
+    public void updateManager(Manager manager) {
+        logger.debug("<==");
+        try {
+            // 若头像为空.
+            if (manager.getHeadImage() == null) {
+                // 先查出manager
+                Manager oldManager = findByUsername(manager.getUsername());
+                // 获取头像字段
+                String headImage = oldManager.getHeadImage();
+                // 设置到新的manager
+                manager.setHeadImage(headImage);
+            }
+            // 更新
+            update(manager);
+        } catch (Exception e) {
+            logger.error("error ==>" + e.getMessage());
+        }
+        logger.debug("out ==>");
     }
 }

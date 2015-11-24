@@ -1,7 +1,7 @@
-package love.drose.gms.service.impl;
+package love.drose.gms.services.impl;
 
 import love.drose.gms.models.Privilege;
-import love.drose.gms.service.PrivilegeService;
+import love.drose.gms.services.PrivilegeService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;

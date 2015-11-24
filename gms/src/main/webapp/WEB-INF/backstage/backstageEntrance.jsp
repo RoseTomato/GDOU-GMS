@@ -20,7 +20,17 @@
     <noscript><link rel="stylesheet" href="${pageContext.request.contextPath}/backstageEntrance/fallback.css" /></noscript>
     <![endif]-->
 
-    <script type="text/javascript">
+    <script type="text/javascript" charset="utf-8">
+
+        window.onload = function() {
+            var message = getURLParam("message")
+            if (message == "UnknownAccountException" || message == "IncorrectCredentialsException") {
+                alert("账户名或密码错误")
+            } else if (message == "AuthenticationException") {
+                alert("认证错误")
+            }
+        }
+
         function validate() {
             with (document.all) {
                 var username = document.getElementById('username');
@@ -33,12 +43,26 @@
                 }
             }
         }
+
+        /**
+        * 获取url参数
+        * @param name
+        * @returns {*}
+         */
+        function getURLParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+            var r = window.location.search.substr(1).match(reg)
+            if(r != null) {
+                return unescape(r[2])
+            }
+            return null
+        }
     </script>
 
 </head>
 
 <body>
-<c:if test="${!empty message}">
+<c:if test="${not empty message}">
     <script type="text/javascript">
         alert("${message}");
     </script>

@@ -1,4 +1,4 @@
-package love.drose.gms.service;
+package love.drose.gms.services;
 
 import love.drose.gms.models.Role;
 
@@ -18,4 +18,9 @@ public interface RoleService extends IService<Role> {
      */
     List<Role> selectByRole(Role role, int page, int rows);
 
+    /**
+     * 找出系统角色
+     * @return
+     */
+    List<Role> findRoles();
 }

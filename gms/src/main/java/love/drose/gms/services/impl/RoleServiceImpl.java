@@ -1,8 +1,8 @@
-package love.drose.gms.service.impl;
+package love.drose.gms.services.impl;
 
 import com.github.pagehelper.PageHelper;
 import love.drose.gms.models.Role;
-import love.drose.gms.service.RoleService;
+import love.drose.gms.services.RoleService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
 
     @Override
     public List<Role> selectByRole(Role role, int page, int rows) {
-        logger.debug("in <==");
+        logger.debug("in <== [Role:"+role+", page:"+page+", rows:"+rows+"]");
 
         Example example = new Example(Role.class);
         Example.Criteria criteria = example.createCriteria();
@@ -35,6 +35,21 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
 
         // 分页查询
         PageHelper.startPage(page, rows);
+
+        logger.debug("out ==>");
+        return selectByExample(example);
+    }
+
+    @Override
+    public List<Role> findRoles() {
+        logger.debug("in <==");
+
+        Example example = new Example(Role.class);
+        Example.Criteria criteria = example.createCriteria();
+
+        // 查询未绑定管理员的角色,并且过滤掉超级管理员
+        criteria.andIsNull("managerId")
+                .andNotEqualTo("id", 1);
 
         logger.debug("out ==>");
         return selectByExample(example);

@@ -1,4 +1,4 @@
-package love.drose.gms.service;
+package love.drose.gms.services;
 
 import love.drose.gms.models.Privilege;
 

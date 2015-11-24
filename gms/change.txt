@@ -1,0 +1,29 @@
+时间：2015 11-17  20:26
+作者：lovedrose
+描述：创建工程
+
+= = = = = = = = = = = = = = = = = =
+...略
+= = = = = = = = = = = = = = = = = =
+时间：2015 11-20  13:31
+作者：lovedrose
+描述：
+    1.加入Shiro
+    2.加入log4j2
+    3.增加后台登陆和退出功能
+
+= = = = = = = = = = = = = = = = = =
+时间 2015-11-23 23:38
+作者：lovedrose
+描述：
+    1.增加了3个工具类：DWZJsonUtil、MD5Util、Page
+    2.对密码进行了md5算法加密
+    3.对管理员实现了增、查、更新（包括修改头像）、冻结、恢复功能
+    4.编写了一个日期转换器（没有加入使用）
+    5.更新了Manager模型（添加了性别、年龄、出生日期、状态、头像字段）
+    6.加入文件上传所需的jar（commons-io、commons-fileupload）
+    7.公共业务方法增加了分页查询（getPageData）、根据name查询模型信息（findByName）、根据id查找模型信息（findById）等...
+    8.管理员业务接口增加了4个方法（findByUsername、associateRoleById、findRolesOfManagerById、updateManager）
+    9.角色业务接口增加了1个方法（findRoles）
+    10.权限业务接口增加了1个方法（findPrivilegesOfRoleById）
+    11.组织结构模块新增4个页面（addManager/listManager/detailManager/updateHeadImage）

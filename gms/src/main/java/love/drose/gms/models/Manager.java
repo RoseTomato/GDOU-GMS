@@ -1,7 +1,10 @@
 package love.drose.gms.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
+import java.util.Date;
 
 /**
  * 管理员模型
@@ -40,6 +43,32 @@ public class Manager {
      */
     private String address;
 
+    /**
+     * 性别
+     */
+    private String gender;
+
+    /**
+     * 年龄
+     */
+    private Integer age;
+
+    /**
+     * 生日
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthday;
+
+    /**
+     * 状态
+     */
+    private String state;
+
+    /**
+     * 头像
+     */
+    private String headImage;
+
     public Manager() {
     }
 
@@ -61,6 +90,11 @@ public class Manager {
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                ", birthday=" + birthday +
+                ", state='" + state + '\'' +
+                ", headImage='" + headImage + '\'' +
                 '}';
     }
 
@@ -111,5 +145,45 @@ public class Manager {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getHeadImage() {
+        return headImage;
+    }
+
+    public void setHeadImage(String headImage) {
+        this.headImage = headImage;
     }
 }

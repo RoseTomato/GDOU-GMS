@@ -1,4 +1,4 @@
-package love.drose.gms.service;
+package love.drose.gms.services;
 
 import love.drose.gms.models.Manager;
 
@@ -29,4 +29,10 @@ public interface ManagerService extends IService<Manager> {
      * @return
      */
     Set<String> findRolesOfManagerById(Integer id);
+
+    /**
+     * 更新管理员信息
+     * @param manager
+     */
+    void updateManager(Manager manager);
 }
