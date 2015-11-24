@@ -45,6 +45,7 @@ public class ManagerHandler {
     private final String FORWARD_LIST_MANAGER = "org/listManager";
     private final String FORWARD_DETAIL_MANAGER = "org/detailManager";
     private final String FORWARD_UPDATE_HEAD_IMAGE = "org/updateHeadImage";
+    private final String FORWARD_ASSOCIATE_ROLE = "org/associateRole";
     private final String SUCCESS = "success";
 
     private Map<String,String> result = null;
@@ -273,6 +274,44 @@ public class ManagerHandler {
             result = DWZJsonUtil.error("系统正忙，请稍后...");
         }
 
+        logger.debug("==>");
+        return result;
+    }
+
+    @RequestMapping("/forwardAssociateRole")
+    public ModelAndView forwardAssociateRole(Integer id) {
+        logger.debug("<== [id:"+id+"]");
+        Map<String, Object> data = null;
+        try {
+            // 查出系统角色
+            List<Role> roles = roleService.findRoles();
+
+            // 将管理员id和角色集合传到页面
+            data = new HashMap<String, Object>();
+            data.put("managerId", id);
+            data.put("roles", roles);
+
+            logger.debug("==>");
+        } catch (Exception e) {
+            logger.error("error:" + e.getMessage());
+            e.printStackTrace();
+        }
+        return new ModelAndView(FORWARD_ASSOCIATE_ROLE, data);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/associateRole", method = RequestMethod.POST)
+    public Object associateRole(Integer managerId, Integer roleId) {
+        logger.debug("<== [managerId:" + managerId + ", roleId:" + roleId + "]");
+        try {
+            // 进行管理员与角色关联
+            managerService.associateRoleById(managerId, roleId);
+            result = DWZJsonUtil.successAndRefresh("showManagers");
+        } catch (Exception e) {
+            logger.error("error:" + e.getMessage());
+            result = DWZJsonUtil.error("系统正忙，请稍后...");
+            e.printStackTrace();
+        }
         logger.debug("==>");
         return result;
     }

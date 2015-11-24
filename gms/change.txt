@@ -27,3 +27,13 @@
     9.角色业务接口增加了1个方法（findRoles）
     10.权限业务接口增加了1个方法（findPrivilegesOfRoleById）
     11.组织结构模块新增4个页面（addManager/listManager/detailManager/updateHeadImage）
+= = = = = = = = = = = = = = = = = =
+时间 2015-11-23 23:38
+作者：lovedrose
+描述：
+    1.对角色实现了增加角色、列出所有角色、更新角色功能
+    2.对管理员实现了分配角色功能
+    3.组织结构模块新增了4个页面（addRole/associateRole/detailRole/listRole）
+    4.后台增加了一个404页面
+    5.管理员业务增加了1个方法（findNamesByIds）
+    6.角色业务增加了了1个方法（findManagerIdsByRoleName）

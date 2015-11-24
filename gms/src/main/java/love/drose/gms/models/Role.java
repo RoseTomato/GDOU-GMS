@@ -25,16 +25,13 @@ public class Role {
 
     private Integer managerId;
 
-    /**
-     * 构造函数
-     * @param id - 编号
-     * @param name - 角色名
-     * @param managerId - 管理员编号
-     */
-    public Role(Integer id, String name, Integer managerId) {
+    private String description;
+
+    public Role(Integer id, String name, Integer managerId, String description) {
         this.id = id;
         this.name = name;
         this.managerId = managerId;
+        this.description = description;
     }
 
     /**
@@ -43,17 +40,13 @@ public class Role {
     public Role() {
     }
 
-    /**
-     * 重写toString方法
-     *
-     * @return
-     */
     @Override
     public String toString() {
         return "Role{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", managerId=" + managerId +
+                ", description='" + description + '\'' +
                 '}';
     }
 
@@ -83,5 +76,11 @@ public class Role {
         this.managerId = managerId;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

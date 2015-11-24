@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.util.StringUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,5 +54,33 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
 
         logger.debug("out ==>");
         return selectByExample(example);
+    }
+
+    @Override
+    public List<Integer> findManagerIdsByRoleName(String name) {
+        logger.debug("in <==");
+        List<Role> roles = null;
+        List<Integer> managerIds = null;
+        try {
+            Example example = new Example(Role.class);
+            Example.Criteria criteria = example.createCriteria();
+
+            // 指定查询条件
+            criteria.andEqualTo("name", name).andIsNotNull("managerId");
+            roles = selectByExample(example);
+
+            if (roles.size() > 0) {
+                managerIds = new ArrayList<Integer>();
+                for(Role role : roles) {
+                    managerIds.add(role.getManagerId());
+                }
+            }
+
+        } catch (Exception e) {
+            logger.error("error:"+e.getMessage());
+        }
+
+        logger.debug("out ==>");
+        return managerIds;
     }
 }

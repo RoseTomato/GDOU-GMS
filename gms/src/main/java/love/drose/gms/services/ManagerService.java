@@ -2,6 +2,7 @@ package love.drose.gms.services;
 
 import love.drose.gms.models.Manager;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -35,4 +36,11 @@ public interface ManagerService extends IService<Manager> {
      * @param manager
      */
     void updateManager(Manager manager);
+
+    /**
+     * 根据id集合找出其对应的名字集合
+     * @param managerIds
+     * @return
+     */
+    List<String> findNamesByIds(List<Integer> managerIds);
 }

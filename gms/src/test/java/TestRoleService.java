@@ -114,4 +114,9 @@ public class TestRoleService extends BaseTest {
         }
     }
 
+    @Test
+    public void findManagerIdsByRoleName() {
+        System.out.println(roleService.findManagerIdsByRoleName("场地管理员"));
+    }
+
 }

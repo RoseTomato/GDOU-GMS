@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -98,5 +99,24 @@ public class ManagerServiceImpl extends BaseService<Manager> implements ManagerS
             logger.error("error ==>" + e.getMessage());
         }
         logger.debug("out ==>");
+    }
+
+    @Override
+    public List<String> findNamesByIds(List<Integer> managerIds) {
+        logger.debug("<== [managerIds:" + managerIds + "]");
+        List<String> result = null;
+        try {
+            if (managerIds.size() > 0) {
+                result = new ArrayList<String>();
+                for (Integer id : managerIds) {
+                    Manager manager = findById(id);
+                    result.add(manager.getUsername());
+                }
+            }
+        } catch (Exception e) {
+            logger.error("error ==>" + e.getMessage());
+        }
+        logger.debug("out ==> [result:" + result + "]");
+        return result;
     }
 }

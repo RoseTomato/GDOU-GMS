@@ -23,4 +23,11 @@ public interface RoleService extends IService<Role> {
      * @return
      */
     List<Role> findRoles();
+
+    /**
+     * 根据角色名找出关联的管理员id
+     * @param name
+     * @return
+     */
+    List<Integer> findManagerIdsByRoleName(String name);
 }

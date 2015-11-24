@@ -24,6 +24,7 @@
             <li><a class="edit"
                    href="${pageContext.request.contextPath}/managerHandler/detailManager?managerId={sid_manager}"
                    target="navTab" title="管理员详情"><span>查看详情</span></a></li>
+            <li><a class="add" href="${pageContext.request.contextPath}/managerHandler/forwardAssociateRole?id={sid_manager}" target="dialog"><span>分配角色</span><a></li>
             <li><a class="delete" href="${pageContext.request.contextPath}/managerHandler/freezeManager?id={sid_manager}"
                    target="ajaxTodo" title="确定要冻结吗?"><span>冻结</span></a></li>
             <li><a class="edit" href="${pageContext.request.contextPath}/managerHandler/recoverManager?id={sid_manager}" target="ajaxTodo"><span>恢复</span></a></li>

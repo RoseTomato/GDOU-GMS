@@ -59,7 +59,6 @@ public class BackstageHandler_ {
     public String loginBackstage(Manager manager, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         logger.debug("in <==[username:" + manager.getUsername() + ", password:" + manager.getPassword() + "]");
         String message = null;
-
         try {
             if (bindingResult.hasErrors()) {
                 logger.error("out ==>");

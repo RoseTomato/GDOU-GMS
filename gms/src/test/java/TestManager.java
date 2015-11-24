@@ -5,6 +5,7 @@ import love.drose.gms.utils.Page;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,5 +43,14 @@ public class TestManager extends BaseTest {
     @Test
     public void testFindByUsername() {
         System.out.println(managerService.findByUsername("admin"));
+    }
+
+    @Test
+    public void findNamesByIds() {
+        List<Integer> ids = new ArrayList<Integer>();
+        ids.add(5);
+        ids.add(6);
+        ids.add(7);
+        System.out.println(managerService.findNamesByIds(ids));
     }
 }

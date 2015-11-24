@@ -124,13 +124,13 @@
                                     <shiro:hasPermission name="新增管理员">
                                     <li><a href="${pageContext.request.contextPath}/managerHandler/forwardAddManager" target="navTab">新增管理员</a></li>
                                     </shiro:hasPermission>
-                                    <li><a href="${pageContext.request.contextPath}/managerHandler/listManager?pageNum=1&pageSize=10" target="navTab" rel="showManagers" title="管理员列表">查询管理员</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/managerHandler/listManager?pageNum=1&pageSize=10" target="navTab" rel="showManagers" title="管理员列表">查看所有管理员</a></li>
                                 </ul>
                             </li>
                         <li><a>角色管理</a>
                             <ul>
-                                <li><a href="" target="navTab" rel="">新增角色</a></li>
-                                <li><a href="" target="navTab" rel="">查询角色</a></li>
+                                <li><a href="${pageContext.request.contextPath}/forward_org_addRole" target="dialog" title="新增角色">新增角色</a></li>
+                                <li><a href="${pageContext.request.contextPath}/roleHandler/listRole" target="navTab" rel="showRoles" title="角色列表">查看所有角色</a></li>
                             </ul>
                         </li>
 
