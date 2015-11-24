@@ -119,4 +119,9 @@ public class TestRoleService extends BaseTest {
         System.out.println(roleService.findManagerIdsByRoleName("场地管理员"));
     }
 
+    @Test
+    public void deleteByField() {
+        roleService.deleteByField("name", "测试管理员");
+    }
+
 }

@@ -44,4 +44,36 @@ public class PrivilegeServiceImpl extends BaseService<Privilege> implements Priv
         logger.debug("out ==>");
         return null;
     }
+
+    @Override
+    public void deleteByRoleId(Integer id) {
+        logger.debug("in <==");
+        try {
+            Example example = new Example(Privilege.class);
+            Example.Criteria criteria = example.createCriteria();
+
+            criteria.andEqualTo("roleId", id);
+            mapper.deleteByExample(example);
+        } catch (Exception e) {
+            logger.error("error:"+e.getMessage());
+            e.printStackTrace();
+        }
+
+        logger.debug("out ==>");
+    }
+
+    @Override
+    public List<Privilege> findPrivileges() {
+        logger.debug("in <==");
+        List<Privilege> privileges = null;
+        try {
+            privileges = findAllWhereIsNull("roleId");
+        } catch (Exception e) {
+            logger.error("error:"+e.getMessage());
+            e.printStackTrace();
+        }
+
+        logger.debug("==>");
+        return privileges;
+    }
 }

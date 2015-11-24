@@ -28,7 +28,7 @@
     10.权限业务接口增加了1个方法（findPrivilegesOfRoleById）
     11.组织结构模块新增4个页面（addManager/listManager/detailManager/updateHeadImage）
 = = = = = = = = = = = = = = = = = =
-时间 2015-11-23 23:38
+时间 2015-11-24 10:00
 作者：lovedrose
 描述：
     1.对角色实现了增加角色、列出所有角色、更新角色功能
@@ -37,3 +37,13 @@
     4.后台增加了一个404页面
     5.管理员业务增加了1个方法（findNamesByIds）
     6.角色业务增加了了1个方法（findManagerIdsByRoleName）
+= = = = = = = = = = = = = = = = = =
+时间 2015-11-24 23:16
+作者：lovedrose
+描述：
+    1.增加了4个页面(addPrivilege/associatePrivilege/listPrivilege/updatePrivilege)
+    2.对管理员实现了分配权限功能、对角色实现了分配权限功能、对权限实现了增、删除、改、查功能
+    3.公共业务方法增加了deleteByField、findAllWhereIsNull、findPageDataWhereIsNull方法
+    4.各个业务接口对象（RoleService/PrivilegeService）也增加了相应的业务逻辑处理
+    5.Privilege模型增加了description（描述）属性
+    6.提交了sql文件到远程仓库

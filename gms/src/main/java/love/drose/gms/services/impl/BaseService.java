@@ -143,4 +143,90 @@ public abstract class BaseService<T> implements IService<T> {
         logger.debug("==> null");
         return null;
     }
+
+    @Override
+    public void deleteByField(String name, Object value) {
+        logger.debug("<==[name:" +name + ", value:" + value + "]");
+        try {
+            Example example = new Example(clazz);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andEqualTo(name, value);
+            mapper.deleteByExample(example);
+        } catch (Exception e) {
+            logger.error("error:" + e.getMessage());
+            e.printStackTrace();
+        }
+        logger.debug("==>");
+    }
+
+    @Override
+    public List<T> findAllWhereIsNull(String name) {
+        logger.debug("<==[name:" +name + "]");
+        List<T> result = null;
+        try {
+            Example example = new Example(clazz);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andIsNull(name);
+            result = selectByExample(example);
+        } catch (Exception e) {
+            logger.error("error:" + e.getMessage());
+            e.printStackTrace();
+        }
+        logger.debug("==>");
+        return result;
+    }
+
+    @Override
+    public Page findPageDataWhereIsNull(Integer pageNum, Integer pageSize, String field) {
+        logger.debug("<==[pageNum:" +pageNum + ", pageSize:" + pageSize + ", field:" + field +"]");
+        try {
+            // 查询出模型的总记录数
+            Example example = new Example(clazz);
+            Example.Criteria criteria = example.createCriteria();
+
+            // 指定查询空的字段
+            criteria.andIsNull(field);
+
+            // 查询总记录数
+            Integer totalRecord = mapper.selectCountByExample(example);
+
+            // 封装到Page对象里面
+            Page page = new Page(pageSize, pageNum, totalRecord);
+
+            // 获取模型的分页list集合
+            // 分页查询
+            PageHelper.startPage(pageNum, pageSize);
+            List<T> list = selectByExample(example);
+
+            if (list.size() > 0) {
+                page.setList(list);
+
+                logger.debug("==> [page:" + page + "]");
+                return page;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        logger.debug("==> null");
+        return null;
+    }
+
+    @Override
+    public List<T> findAllByName(String name) {
+        logger.debug("<==[name:" +name + "]");
+        List<T> result = null;
+        try {
+            Example example = new Example(clazz);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andEqualTo("name", name);
+
+            result = selectByExample(example);
+        } catch (Exception e) {
+            logger.error("error:" + e.getMessage());
+            e.printStackTrace();
+        }
+        logger.debug("==>");
+        return result;
+    }
 }

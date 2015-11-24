@@ -113,7 +113,7 @@
             <div class="toggleCollapse"><h2>主菜单</h2><div>收缩</div></div>
 
             <div class="accordion" fillSpace="sidebar">
-                <shiro:hasAnyRoles name="超级管理员,组织结构管理员">
+                <shiro:hasAnyRoles name="超级管理员">
                 <div class="accordionHeader">
                     <h2><span>Folder</span>组织结构管理</h2>
                 </div>
@@ -136,8 +136,8 @@
 
                         <li><a>权限管理</a>
                             <ul>
-                                <li><a href="" target="navTab" rel="">新增权限</a></li>
-                                <li><a href="" target="navTab" rel="">查询权限</a></li>
+                                <li><a href="${pageContext.request.contextPath}/forward_org_addPrivilege" target="dialog" title="新增权限">新增权限</a></li>
+                                <li><a href="${pageContext.request.contextPath}/privilegeHandler/listPrivilege?pageNum=1&pageSize=20" target="navTab" rel="showPrivileges" title="权限列表">查看所有权限</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -1,10 +1,13 @@
 package love.drose.gms.services.impl;
 
 import com.github.pagehelper.PageHelper;
+import love.drose.gms.models.Privilege;
 import love.drose.gms.models.Role;
+import love.drose.gms.services.PrivilegeService;
 import love.drose.gms.services.RoleService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.util.StringUtil;
@@ -20,6 +23,9 @@ import java.util.List;
 public class RoleServiceImpl extends BaseService<Role> implements RoleService {
 
     private static Logger logger = LogManager.getLogger(RoleServiceImpl.class.getName());
+
+    @Autowired
+    private PrivilegeService privilegeService;
 
     @Override
     public List<Role> selectByRole(Role role, int page, int rows) {
@@ -82,5 +88,23 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
 
         logger.debug("out ==>");
         return managerIds;
+    }
+
+    @Override
+    public void associatePrivilegeById(Integer roleId, Integer privilegeId) {
+        logger.debug("<== [roleId:"+roleId+", privilegeId:" + privilegeId + "]");
+        try {
+            String privilegeName = privilegeService.findById(privilegeId).getName();
+            Privilege privilege = new Privilege();
+            privilege.setName(privilegeName);
+            // 设置关联的角色id
+            privilege.setRoleId(roleId);
+            // 保存
+            privilegeService.save(privilege);
+        } catch (Exception e) {
+            logger.error("error:" + e.getMessage());
+            e.printStackTrace();
+        }
+        logger.debug("==>");
     }
 }

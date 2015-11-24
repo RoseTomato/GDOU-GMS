@@ -97,5 +97,36 @@ public interface IService<T> {
      */
     Page getPageData(int pageNum, int pageSize);
 
+    /**
+     * 删除指定字段的数据
+     * @param name
+     * @param value
+     */
+    void deleteByField(String name, Object value);
+
+    /**
+     * 获取所有模型信息，除去指定的字段为null
+     * @param name - 字段名
+     * @return
+     */
+    List<T> findAllWhereIsNull(String name);
+
+    /**
+     * 根据指定字段为null，获取分页数据
+     * @param pageNum
+     * @param pageSize
+     * @param field
+     * @return
+     */
+    Page findPageDataWhereIsNull(Integer pageNum, Integer pageSize, String field);
+
+    /**
+     * 根据名字获取全部
+     * @param name
+     */
+    List<T> findAllByName(String name);
+
+
+
     //TODO others...
 }

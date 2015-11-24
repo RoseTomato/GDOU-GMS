@@ -3,6 +3,7 @@ package love.drose.gms.services;
 import love.drose.gms.models.Privilege;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * 权限Service接口
@@ -16,4 +17,17 @@ public interface PrivilegeService extends IService<Privilege> {
      * @return 权限集合
      */
     Collection<String> findPrivilegesOfRoleById(Integer id);
+
+    /**
+     * 根据角色id删除权限
+     * @param id
+     */
+    void deleteByRoleId(Integer id);
+
+    /**
+     * 获取系统权限（未绑定角色的）
+     * @return
+     */
+    List<Privilege> findPrivileges();
+
 }

@@ -24,10 +24,26 @@ public class Privilege {
      */
     private Integer roleId;
 
-    public Privilege(Integer id, String name, Integer roleId) {
+    /**
+     * 描述
+     */
+    private String description;
+
+    public Privilege(Integer id, String name, Integer roleId, String description) {
         this.id = id;
         this.name = name;
         this.roleId = roleId;
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Privilege{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", roleId=" + roleId +
+                ", description='" + description + '\'' +
+                '}';
     }
 
     public Privilege() {
@@ -57,12 +73,11 @@ public class Privilege {
         this.roleId = roleId;
     }
 
-    @Override
-    public String toString() {
-        return "Privilege{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", roleId=" + roleId +
-                '}';
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

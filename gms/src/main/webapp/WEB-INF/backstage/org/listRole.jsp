@@ -15,9 +15,9 @@
             <li><a class="edit"
                    href="${pageContext.request.contextPath}/roleHandler/detailRole?name={roleName}"
                    target="navTab" title="角色详情"><span>查看详情</span></a></li>
-            <li><a class="delete" href="${pageContext.request.contextPath}/roleHandler/freezerole?id={sid_role}"
+            <li><a class="delete" href="${pageContext.request.contextPath}/roleHandler/deleteRole?name={roleName}"
                    target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="add" href="${pageContext.request.contextPath}/roleHandler/recoverrole?id={sid_role}" target="ajaxTodo"><span>分配权限</span></a></li>
+            <li><a class="add" href="${pageContext.request.contextPath}/roleHandler/forwardAssociatePrivilege?name={roleName}" target="navTab" title="分配权限"><span>分配权限</span></a></li>
 
             <li class="line">line</li>
         </ul>

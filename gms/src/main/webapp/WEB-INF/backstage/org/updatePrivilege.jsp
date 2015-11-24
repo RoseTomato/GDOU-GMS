@@ -10,44 +10,24 @@
 <body>
 <div class="pageContent">
     <form method="post"
-          action="${pageContext.request.contextPath}/roleHandler/updateRole"
+          action="${pageContext.request.contextPath}/privilegeHandler/updatePrivilege"
           class="pageForm required-validate"
           onsubmit="return validateCallback(this, navTabAjaxDone);">
         <div class="pageFormContent nowrap" layoutH="56">
-            <input type="text" name="id" value="${role.id }" style="display: none;">
+            <input type="text" name="id" value="${privilege.id }" style="display: none;">
             <dl>
-                <dt>角色名：</dt>
+                <dt>权限名：</dt>
                 <dd>
-                    <input type="text" name="name" class="required" value="${role.name }"  >
+                    <input type="text" name="name" class="required" value="${privilege.name }"  >
                 </dd>
 
             </dl>
             <dl>
                 <dt>描述：</dt>
                 <dd>
-                    <textarea name="description" >${role.description}</textarea>
+                    <textarea name="description" >${privilege.description}</textarea>
                 </dd>
 
-            </dl>
-            <dl>
-                <dt>关联的角色：</dt>
-                <dd>
-                    <ul>
-                        <c:forEach items="${managerNames}" var="managerName">
-                        <li>${managerName}</li>
-                        </c:forEach>
-                    </ul>
-                </dd>
-            </dl>
-            <dl>
-                <dt>拥有的权限：</dt>
-                <dd>
-                    <ul>
-                        <c:forEach items="${privilegeNames}" var="privilegeName">
-                            <li>${privilegeName}</li>
-                        </c:forEach>
-                    </ul>
-                </dd>
             </dl>
         </div>
         <div class="formBar">

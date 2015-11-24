@@ -30,4 +30,12 @@ public interface RoleService extends IService<Role> {
      * @return
      */
     List<Integer> findManagerIdsByRoleName(String name);
+
+    /**
+     * 用角色ID关联权限
+     * @param roleId
+     * @param privilegeId
+     */
+    void associatePrivilegeById(Integer roleId, Integer privilegeId);
+
 }
