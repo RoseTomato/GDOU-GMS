@@ -10,7 +10,6 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -20,13 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * Created by lovedrose on 2015/11/20.
  */
 @Controller
-public class BackstageHandler_ {
-
-    private final String BACKSTAGE_ENTRANCE = "backstageEntrance";
-    private final String BACKSTAGE_INDEX = "backstageIndex";
-    private final String NO_PRIVILEGE = "403";
-    private final String REDIRECT_TO_LOGIN = "redirect:/backstageEntrance";
-    private final String REDIRECT_TO_INDEX = "redirect:/toIndex";
+public class BackstageHandler_ extends BaseHandler{
 
     private static Logger logger =  LogManager.getLogger(BackstageHandler_.class.getName());
 
@@ -113,28 +106,4 @@ public class BackstageHandler_ {
         return NO_PRIVILEGE;
     }
 
-    /**
-     * 跳转到某个模块页面的公共方法
-     * @param module - 模块名
-     * @param page - 页面名
-     * @return
-     */
-    @RequestMapping(value = "/forward_{module}_{page}", method = RequestMethod.GET)
-    public String forward(@PathVariable("module") String module, @PathVariable("page") String page) {
-        logger.debug("in <== [module:" + module + ", page:" + page + "]");
-
-        String result = "";
-
-        if (module != null && !module.isEmpty()) {
-            result += module;
-        }
-
-        if (page != null && !page.isEmpty()) {
-            result += "/";
-            result += page;
-        }
-
-        logger.debug("out ==> [result:" + result + "]");
-        return result;
-    }
 }

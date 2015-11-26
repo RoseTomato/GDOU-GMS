@@ -103,6 +103,40 @@ LOCK TABLES `role` WRITE;
 INSERT INTO `role` VALUES (1,'超级管理员',NULL,NULL),(2,'组织结构管理员',NULL,NULL),(3,'器材管理员',NULL,NULL),(4,'赛事管理员',NULL,'负责赛事审核、安排等工作'),(5,'用户管理员',NULL,NULL),(7,'超级管理员',1,NULL),(32,'测试管理者',NULL,'测试的'),(33,'测试管理者',9,'测试的');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sno` varchar(15) NOT NULL,
+  `username` varchar(40) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `name` varchar(40) DEFAULT NULL,
+  `gender` varchar(4) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `state` varchar(10) DEFAULT '未冻结',
+  `head_image` varchar(255) DEFAULT 'defaultHeadImage',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `sno` (`sno`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'201311701326','lovedrose','e10adc3949ba59abbe56e057f20f883e','Rose','男',21,'1994-07-14','未冻结','1'),(2,'201311701325','eechon','a3590023df66ac92ae35e3316026d17d','巫逸聪','女',20,'2015-03-31','未冻结','2');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -113,4 +147,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-24 23:28:41
+-- Dump completed on 2015-11-26 23:51:50

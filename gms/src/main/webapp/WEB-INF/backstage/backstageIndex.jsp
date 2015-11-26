@@ -113,7 +113,7 @@
             <div class="toggleCollapse"><h2>主菜单</h2><div>收缩</div></div>
 
             <div class="accordion" fillSpace="sidebar">
-                <shiro:hasAnyRoles name="超级管理员">
+                <shiro:hasAnyRoles name="超级管理员,组织结构管理员">
                 <div class="accordionHeader">
                     <h2><span>Folder</span>组织结构管理</h2>
                 </div>
@@ -150,8 +150,8 @@
                 </div>
                 <div class="accordionContent">
                     <ul class="tree treeFolder">
-                        <li><a href="" target="navTab" rel="">新增用户</a></li>
-                        <li><a href="" target="navTab" rel="">查询用户</a></li>
+                        <li><a href="${pageContext.request.contextPath}/forward_user_addUser" target="navTab" title="新增用户">新增用户</a></li>
+                        <li><a href="${pageContext.request.contextPath}/userHandler/listUser?pageNum=1&pageSize=20" target="navTab" rel="showUsers" title="查看所有用户">查看所有用户</a></li>
                     </ul>
                 </div>
                 </shiro:hasAnyRoles>

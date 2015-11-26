@@ -31,7 +31,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/managerHandler")
-public class ManagerHandler {
+public class ManagerHandler extends BaseHandler {
 
     private static Logger logger = LogManager.getLogger(ManagerHandler.class.getName());
 
@@ -40,15 +40,6 @@ public class ManagerHandler {
 
     @Autowired
     private ManagerService managerService;
-
-    private final String FORWARD_ADD_MANAGER = "org/addManager";
-    private final String FORWARD_LIST_MANAGER = "org/listManager";
-    private final String FORWARD_DETAIL_MANAGER = "org/detailManager";
-    private final String FORWARD_UPDATE_HEAD_IMAGE = "org/updateHeadImage";
-    private final String FORWARD_ASSOCIATE_ROLE = "org/associateRole";
-    private final String SUCCESS = "success";
-
-    private Map<String,String> result = null;
 
     /**
      * 跳转到添加管理员页面

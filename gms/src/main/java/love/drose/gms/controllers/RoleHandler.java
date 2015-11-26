@@ -22,13 +22,9 @@ import java.util.*;
  */
 @Controller
 @RequestMapping("/roleHandler")
-public class RoleHandler {
+public class RoleHandler extends BaseHandler {
 
     Logger logger = LogManager.getLogger(RoleHandler.class);
-
-    private final String LIST_ROLE = "org/listRole";
-    private final String DETAIL_ROLE = "org/detailRole";
-    private final String FORWARD_ASSOCIATE_PRIVILEGE = "org/associatePrivilege";
 
     @Autowired
     private RoleService roleService;

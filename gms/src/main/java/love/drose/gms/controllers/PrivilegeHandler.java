@@ -21,17 +21,14 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/privilegeHandler")
-public class PrivilegeHandler {
+public class PrivilegeHandler extends BaseHandler{
 
     Logger logger = LogManager.getLogger(PrivilegeHandler.class);
 
-    private final String LIST_PRIVILEGE = "org/listPrivilege";
-    private final String FORWARD_UPDATE_PRIVILEGE = "org/updatePrivilege";
 
     @Autowired
     private PrivilegeService privilegeService;
 
-    Map<String,String> result = null;
 
     @ResponseBody
     @RequestMapping(value = "/addPrivilege", method = RequestMethod.POST)
@@ -64,7 +61,7 @@ public class PrivilegeHandler {
             modelAndView.setViewName(LIST_PRIVILEGE);
         } catch (Exception e) {
             logger.error("error:" + e.getMessage());
-            modelAndView.setViewName("404");
+            modelAndView.setViewName(NO_RESOURCE);
             e.printStackTrace();
         }
         return modelAndView;
@@ -82,7 +79,7 @@ public class PrivilegeHandler {
             modelAndView.setViewName(FORWARD_UPDATE_PRIVILEGE);
         } catch (Exception e) {
             logger.error("error:" + e.getMessage());
-            modelAndView.setViewName("404");
+            modelAndView.setViewName(NO_RESOURCE);
             e.printStackTrace();
         }
         return modelAndView;

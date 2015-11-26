@@ -47,3 +47,11 @@
     4.各个业务接口对象（RoleService/PrivilegeService）也增加了相应的业务逻辑处理
     5.Privilege模型增加了description（描述）属性
     6.提交了sql文件到远程仓库
+= = = = = = = = = = = = = = = = = =
+时间 2015-11-26 23:47
+作者：lovedrose
+描述：
+    1.增加了4个页面(addUser/detailUser/listUser/updateHeadImage)
+    2.对用户实现了实现了对权限实现了增、删除、改、查功能, 上传头像
+    3.增加了UserService接口,增加了User模型,UserMapper
+    4.更新了sql文件
