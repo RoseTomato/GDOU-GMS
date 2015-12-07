@@ -13,4 +13,12 @@ public interface UserService extends IService<User> {
      */
     void updateUser(User user);
 
+    /**
+     * 根据用户名和密码查找用户信息.
+     * @param username
+     * @param password
+     * @return
+     */
+    User findByUsernameAndPassword(String username, String password);
+
 }

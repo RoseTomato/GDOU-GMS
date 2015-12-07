@@ -72,4 +72,7 @@ public class BaseHandler {
     public final String TO_DETAIL_USER = "user/detailUser";
     public final String TO_UPDATE_USER_HEAD_IMAGE = "user/updateHeadImage";
 
+    public final String TO_LIST_FIELD = "field/listField";
+    public final String TO_DETAILD_FIELD = "field/detailField";
+
 }

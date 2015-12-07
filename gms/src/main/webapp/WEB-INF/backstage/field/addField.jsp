@@ -8,46 +8,27 @@
 </head>
 <body>
 <div class="pageContent">
-    <form method="post" action="${pageContext.request.contextPath}/userHandler/addUser"
+    <form method="post" action="${pageContext.request.contextPath}/fieldHandler/addField"
           class="pageForm required-validate"
           onsubmit="return validateCallback(this, navTabAjaxDone);">
         <div class="pageFormContent nowrap" layoutH="56">
             <h3>添加用户</h3>
             <dl>
-                <dt>用户名</dt>
+                <dt>场地名</dt>
                 <dd>
-                    <input type="text" name="username" class="required">
+                    <input type="text" name="name" class="required">
                 </dd>
             </dl>
             <dl>
-                <dt>密码</dt>
+                <dt>描述</dt>
                 <dd>
-                    <input type="password" name="password" class="required">
+                   <textarea name="description"></textarea>
                 </dd>
             </dl>
             <dl>
-                <dt>姓名</dt>
+                <dt>租金</dt>
                 <dd>
-                    <input type="text" name="name">
-                </dd>
-            </dl>
-            <dl>
-                <dt>性别</dt>
-                <dd>
-                    <input type="radio" name="gender" value="男">男
-                    <input type="radio" name="gender" value="女">女
-                </dd>
-            </dl>
-            <dl>
-                <dt>年龄</dt>
-                <dd>
-                    <input type="text" name="age">
-                </dd>
-            </dl>
-            <dl>
-                <dt>生日</dt>
-                <dd>
-                    <input type="text" name="birthday" placeholder="1994-07-14">
+                    <input type="text" name="fee">
                 </dd>
             </dl>
         </div>

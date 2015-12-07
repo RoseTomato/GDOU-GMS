@@ -18,13 +18,6 @@
             <input type="text" name="id" value="${user.id }" style="display: none;">
             <input type="text" name="password" value="${user.password }" style="display: none;">
             <dl>
-                <dt>学号：</dt>
-                <dd>
-                    <input type="text" name="sno"  readonly="readonly" class="required" value="${user.sno }"  >
-                </dd>
-
-            </dl>
-            <dl>
                 <dt>账号：</dt>
                 <dd>
                     <input type="text" name="username"  readonly="readonly" class="required" value="${user.username }"  >

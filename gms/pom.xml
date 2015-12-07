@@ -146,6 +146,7 @@
           <version>1.0</version>
       </dependency>
 
+
       <!-- C3P0 -->
       <dependency>
           <groupId>c3p0</groupId>

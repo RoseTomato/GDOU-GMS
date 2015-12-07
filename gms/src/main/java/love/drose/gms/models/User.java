@@ -20,11 +20,6 @@ public class User {
     private Integer id;
 
     /**
-     * 学号
-     */
-    private String sno;
-
-    /**
      * 用户名
      */
     private String username;
@@ -73,7 +68,6 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", sno='" + sno + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
@@ -85,10 +79,9 @@ public class User {
                 '}';
     }
 
-    public User(Integer id, String sno, String username, String password, String name, String gender, Integer age, Date birthday, String state, String headImage) {
+    public User(Integer id, String username, String password, String name, String gender, Integer age, Date birthday, String state, String headImage) {
 
         this.id = id;
-        this.sno = sno;
         this.username = username;
         this.password = password;
         this.name = name;
@@ -171,11 +164,4 @@ public class User {
         this.state = state;
     }
 
-    public String getSno() {
-        return sno;
-    }
-
-    public void setSno(String sno) {
-        this.sno = sno;
-    }
 }

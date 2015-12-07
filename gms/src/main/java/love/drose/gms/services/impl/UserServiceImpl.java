@@ -5,6 +5,9 @@ import love.drose.gms.services.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
+
+import java.util.List;
 
 /**
  * 用户service
@@ -32,5 +35,28 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
             e.printStackTrace();
         }
         logger.debug("==>");
+    }
+
+    @Override
+    public User findByUsernameAndPassword(String username, String password) {
+        logger.debug("in <==");
+        User user = null;
+        try {
+            Example example = new Example(User.class);
+            Example.Criteria criteria = example.createCriteria();
+
+            // 指定查询条件
+            criteria.andEqualTo("username", username).andEqualTo("password", password);
+            List<User> users = selectByExample(example);
+            if (users.size() > 0) {
+                user = users.get(0);
+            }
+        } catch (Exception e) {
+            logger.error("error:"+e.getMessage());
+            e.printStackTrace();
+        }
+
+        logger.debug("out ==>");
+        return user;
     }
 }

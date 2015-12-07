@@ -19,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 用户控制器.
@@ -202,5 +204,27 @@ public class UserHandler extends BaseHandler {
         }
         logger.debug("==>");
         return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Object login(String username, String password) {
+        logger.debug("<== [username:" + username + ", password:" + password + "]");
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            // 根据用户名和密码找到用户
+            User user = userService.findByUsernameAndPassword(username, password);
+            if (user != null) {
+                map.put("result", "ok");
+                map.put("data", user);
+            } else {
+                map.put("result", "failure");
+            }
+        } catch (Exception e) {
+            logger.error("==> error:" + e.getMessage());
+            e.printStackTrace();
+        }
+        logger.debug("==>");
+        return map;
     }
 }

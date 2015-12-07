@@ -161,8 +161,8 @@
                 </div>
                 <div class="accordionContent">
                     <ul class="tree treeFolder">
-                        <li><a href="" target="navTab" rel="">新增场地</a></li>
-                        <li><a href="" target="navTab" rel="">查询场地</a></li>
+                        <li><a href="${pageContext.request.contextPath}/forward_field_addField" target="navTab" title="新增场地">新增场地</a></li>
+                        <li><a href="${pageContext.request.contextPath}/fieldHandler/listField?pageNum=1&pageSize=20" target="navTab" rel="showFields" title="查看所有场地">查看所有场地</a></li>
                     </ul>
                 </div>
                 </shiro:hasAnyRoles>

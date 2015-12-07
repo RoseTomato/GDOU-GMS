@@ -1,0 +1,112 @@
+package love.drose.gms.models;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+
+/**
+ * 场地模型
+ * Created by lovedrose on 2015/11/27.
+ */
+public class Field {
+    @Id
+    @Column(name = "Id")
+    private Integer id;
+
+    /**
+     * 场地名.
+     */
+    private String name;
+
+    /**
+     * 描述.
+     */
+    private String description;
+
+    /**
+     * 租金.
+     */
+    private Double fee;
+
+    /**
+     * 状态.
+     */
+    private String state;
+
+    /**
+     * 图片
+     */
+    private String image;
+
+    @Override
+    public String toString() {
+        return "Field{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", fee=" + fee +
+                ", state='" + state + '\'' +
+                ", image='" + image + '\'' +
+                '}';
+    }
+
+    public Field() {
+    }
+
+    public Field(Integer id, String name, String description, Double fee, String state, String image) {
+
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.fee = fee;
+        this.state = state;
+        this.image = image;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getFee() {
+        return fee;
+    }
+
+    public void setFee(Double fee) {
+        this.fee = fee;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+}
