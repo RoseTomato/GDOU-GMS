@@ -35,6 +35,7 @@
         <tr align="center">
             <th >账号</th>
             <th >姓名</th>
+            <th >手机</th>
             <th >年龄</th>
             <th >生日</th>
             <th >性别</th>
@@ -46,6 +47,7 @@
             <tr target="sid_user" rel="${user.id }" align="center">
                 <td>${user.username }</td>
                 <td >${user.name }</td>
+                <td >${user.phone }</td>
                 <td>${user.age}</td>
                 <td><spring:eval expression="user.birthday"></spring:eval></td>
                 <td>${user.gender}</td>

@@ -37,7 +37,12 @@
                 <dd>
                     <input type="text" name="name"  value="${user.name }">
                 </dd>
-
+            </dl>
+            <dl>
+                <dt>手机</dt>
+                <dd>
+                    <input type="text" name="phone" value="${user.phone}">
+                </dd>
             </dl>
             <dl>
                 <dt>年龄：</dt>

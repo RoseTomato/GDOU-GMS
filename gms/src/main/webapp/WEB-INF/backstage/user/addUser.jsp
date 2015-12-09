@@ -32,6 +32,12 @@
                 </dd>
             </dl>
             <dl>
+                <dt>手机</dt>
+                <dd>
+                    <input type="text" name="phone">
+                </dd>
+            </dl>
+            <dl>
                 <dt>性别</dt>
                 <dd>
                     <input type="radio" name="gender" value="男">男

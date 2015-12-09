@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -222,6 +223,59 @@ public class UserHandler extends BaseHandler {
             }
         } catch (Exception e) {
             logger.error("==> error:" + e.getMessage());
+            e.printStackTrace();
+        }
+        logger.debug("==>");
+        return map;
+    }
+
+    /**
+     * iOS客户端注册
+     * @param username - 用户名（学号）
+     * @param password - 密码
+     * @param name - 名字
+     * @param gender - 性别
+     * @param age - 年龄
+     * @param birthday - 生日
+     * @param phone - 手机
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public Object register(String username,
+                           String password,
+                           String name,
+                           String gender,
+                           Integer age,
+                           String birthday,
+                           String phone) {
+        logger.debug("<== [username:" + username + ", password:" + password + ", name:"
+                + name + ", gender:" + gender + ", age:" + age + ", birthday:" + birthday + ", phone:" + phone + "]");
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            User user = new User();
+            user.setUsername(username);
+            // 处理密码
+            user.setPassword(password);
+            user.setName(name);
+            user.setGender(gender);
+            user.setAge(age);
+            user.setPhone(phone);
+            // 处理生日
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            user.setBirthday(sdf.parse(birthday));
+            // 处理头像
+            user.setHeadImage("defaultHeadImage");
+            // 处理状态
+            user.setState("未冻结");
+
+            // 新增用户
+            userService.save(user);
+
+            map.put("result", "ok");
+        } catch (Exception e) {
+            logger.error("==> error:" + e.getMessage());
+            map.put("result", "failure");
             e.printStackTrace();
         }
         logger.debug("==>");

@@ -60,6 +60,11 @@ public class User {
      */
     private String headImage;
 
+    /**
+     * 手机
+     */
+    private String phone;
+
 
     public User() {
     }
@@ -76,11 +81,11 @@ public class User {
                 ", birthday=" + birthday +
                 ", state='" + state + '\'' +
                 ", headImage='" + headImage + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 
-    public User(Integer id, String username, String password, String name, String gender, Integer age, Date birthday, String state, String headImage) {
-
+    public User(Integer id, String username, String password, String name, String gender, Integer age, Date birthday, String state, String headImage, String phone) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -90,6 +95,7 @@ public class User {
         this.birthday = birthday;
         this.state = state;
         this.headImage = headImage;
+        this.phone = phone;
     }
 
     public Integer getId() {
@@ -164,4 +170,11 @@ public class User {
         this.state = state;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }
