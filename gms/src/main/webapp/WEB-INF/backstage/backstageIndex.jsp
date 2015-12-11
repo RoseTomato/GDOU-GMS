@@ -155,13 +155,24 @@
                     </ul>
                 </div>
                 </shiro:hasAnyRoles>
+                <shiro:hasAnyRoles name="超级管理员">
+                    <div class="accordionHeader">
+                        <h2><span>Folder</span>分类管理</h2>
+                    </div>
+                    <div class="accordionContent">
+                        <ul class="tree treeFolder">
+                            <li><a href="${pageContext.request.contextPath}/forward_category_addFirstCategory" target="navTab" title="新增一级分类">新增一级分类</a></li>
+                            <li><a href="${pageContext.request.contextPath}/categoryHandler/listFirstCategory?pageNum=1&pageSize=20" target="navTab" rel="showFirstCategories" title="查看所有一级分类">查看所有一级分类</a></li>
+                        </ul>
+                    </div>
+                </shiro:hasAnyRoles>
                 <shiro:hasAnyRoles name="超级管理员,场地管理员">
                 <div class="accordionHeader">
                     <h2><span>Folder</span>场地管理</h2>
                 </div>
                 <div class="accordionContent">
                     <ul class="tree treeFolder">
-                        <li><a href="${pageContext.request.contextPath}/forward_field_addField" target="navTab" title="新增场地">新增场地</a></li>
+                        <li><a href="${pageContext.request.contextPath}/fieldHandler/toAddField" target="navTab" title="新增场地">新增场地</a></li>
                         <li><a href="${pageContext.request.contextPath}/fieldHandler/listField?pageNum=1&pageSize=20" target="navTab" rel="showFields" title="查看所有场地">查看所有场地</a></li>
                     </ul>
                 </div>

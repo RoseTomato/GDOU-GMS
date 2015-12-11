@@ -126,6 +126,7 @@ public interface IService<T> {
      */
     List<T> findAllByName(String name);
 
+    List<T> findAllByProperty(String propertyName, Object value);
 
 
     //TODO others...

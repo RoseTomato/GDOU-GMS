@@ -37,6 +37,25 @@ public class Field {
      */
     private String image;
 
+    /**
+     * 使用类型.
+     */
+    private String useType;
+
+    /**
+     * 可容纳人数
+     */
+    private Integer galleryful;
+
+    /**
+     * 二级分类id
+     */
+    private Integer categoryId;
+
+
+    public Field() {
+    }
+
     @Override
     public String toString() {
         return "Field{" +
@@ -46,20 +65,22 @@ public class Field {
                 ", fee=" + fee +
                 ", state='" + state + '\'' +
                 ", image='" + image + '\'' +
+                ", useType='" + useType + '\'' +
+                ", galleryful=" + galleryful +
+                ", categoryId=" + categoryId +
                 '}';
     }
 
-    public Field() {
-    }
-
-    public Field(Integer id, String name, String description, Double fee, String state, String image) {
-
+    public Field(Integer id, String name, String description, Double fee, String state, String image, String useType, Integer galleryful, Integer categoryId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.fee = fee;
         this.state = state;
         this.image = image;
+        this.useType = useType;
+        this.galleryful = galleryful;
+        this.categoryId = categoryId;
     }
 
     public Integer getId() {
@@ -108,5 +129,29 @@ public class Field {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Integer getGalleryful() {
+        return galleryful;
+    }
+
+    public void setGalleryful(Integer galleryful) {
+        this.galleryful = galleryful;
+    }
+
+    public String getUseType() {
+        return useType;
+    }
+
+    public void setUseType(String useType) {
+        this.useType = useType;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 }

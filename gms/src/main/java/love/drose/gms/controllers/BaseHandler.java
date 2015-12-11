@@ -73,6 +73,12 @@ public class BaseHandler {
     public final String TO_UPDATE_USER_HEAD_IMAGE = "user/updateHeadImage";
 
     public final String TO_LIST_FIELD = "field/listField";
+    public final String TO_ADD_FIELD = "field/addField";
     public final String TO_DETAILD_FIELD = "field/detailField";
+
+
+    public final String TO_LIST_FIRST_CATEGORY = "category/listFirstCategory";
+    public final String TO_LIST_SECOND_CATEGORY = "category/listSecondCategory";
+    public final String TO_ADD_SECOND_CATEGORY = "category/addSecondCategory";
 
 }

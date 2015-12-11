@@ -36,6 +36,38 @@
                 </dd>
             </dl>
             <dl>
+                <dt>可容纳人数：</dt>
+                <dd>
+                    <input  type="text" name="galleryful" value="${field.galleryful }">
+                </dd>
+            </dl>
+            <dl>
+                <dt>使用类型：</dt>
+                <dd>
+                    <input type="radio" name="useType"  value="按次"
+                    <c:if test="${field.useType == '按次'}"> checked="checked" </c:if>
+                            >按次
+                    <input type="radio" name="useType"  value="按时"
+                    <c:if test="${field.useType == '按时'}"> checked="checked" </c:if>
+                            >按时
+                </dd>
+            </dl>
+            <dl>
+                <dt>所属分类：</dt>
+                <dd>
+                    <select name="category_id">
+                        <c:forEach items="${secondCategories}" var="sc">
+                            <option value="${sc.id}"
+                                    <c:if test="${sc.id == secondCategory.id}">
+                                        selected="selected"
+                                    </c:if>
+                                    >${sc.name}
+                            </option>
+                        </c:forEach>
+                    </select>
+                </dd>
+            </dl>
+            <dl>
                 <dt>图片：</dt>
                 <dd>
                     <a href="${pageContext.request.contextPath }/fieldHandler/forwardUpdateImage?id=${field.id}" target="dialog">

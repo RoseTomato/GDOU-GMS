@@ -16,6 +16,63 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `field`
+--
+
+DROP TABLE IF EXISTS `field`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `field` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `fee` double NOT NULL,
+  `state` varchar(10) NOT NULL DEFAULT '可使用',
+  `use_type` varchar(10) NOT NULL,
+  `galleryful` int(11) NOT NULL,
+  `image` varchar(40) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_category_id` (`category_id`),
+  CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `second_category` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `field`
+--
+
+LOCK TABLES `field` WRITE;
+/*!40000 ALTER TABLE `field` DISABLE KEYS */;
+INSERT INTO `field` VALUES (1,'篮球场A','提供篮球活动场所',50,'可使用','按次',100,'defaultImage',NULL);
+/*!40000 ALTER TABLE `field` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `first_category`
+--
+
+DROP TABLE IF EXISTS `first_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `first_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `first_category`
+--
+
+LOCK TABLES `first_category` WRITE;
+/*!40000 ALTER TABLE `first_category` DISABLE KEYS */;
+INSERT INTO `first_category` VALUES (1,'球类');
+/*!40000 ALTER TABLE `first_category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `manager`
 --
 
@@ -105,6 +162,65 @@ INSERT INTO `role` VALUES (1,'超级管理员',NULL,NULL),(2,'组织结构管理
 UNLOCK TABLES;
 
 --
+-- Table structure for table `second_category`
+--
+
+DROP TABLE IF EXISTS `second_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `second_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_parent_id` (`parent_id`),
+  CONSTRAINT `fk_parent_id` FOREIGN KEY (`parent_id`) REFERENCES `first_category` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `second_category`
+--
+
+LOCK TABLES `second_category` WRITE;
+/*!40000 ALTER TABLE `second_category` DISABLE KEYS */;
+INSERT INTO `second_category` VALUES (1,'篮球',1),(2,'羽毛球',1);
+/*!40000 ALTER TABLE `second_category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `use_field`
+--
+
+DROP TABLE IF EXISTS `use_field`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `use_field` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_time` datetime NOT NULL,
+  `start_time` datetime DEFAULT NULL,
+  `duration` double DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `field_id` int(11) DEFAULT NULL,
+  `appoint` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_id` (`user_id`),
+  KEY `fk_field_id` (`field_id`),
+  CONSTRAINT `fk_field_id` FOREIGN KEY (`field_id`) REFERENCES `field` (`id`),
+  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `use_field`
+--
+
+LOCK TABLES `use_field` WRITE;
+/*!40000 ALTER TABLE `use_field` DISABLE KEYS */;
+/*!40000 ALTER TABLE `use_field` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -113,7 +229,6 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sno` varchar(15) NOT NULL,
   `username` varchar(40) NOT NULL,
   `password` varchar(40) NOT NULL,
   `name` varchar(40) DEFAULT NULL,
@@ -122,10 +237,10 @@ CREATE TABLE `user` (
   `birthday` date DEFAULT NULL,
   `state` varchar(10) DEFAULT '未冻结',
   `head_image` varchar(255) DEFAULT 'defaultHeadImage',
+  `phone` varchar(12) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `sno` (`sno`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134,7 +249,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'201311701326','lovedrose','e10adc3949ba59abbe56e057f20f883e','Rose','男',21,'1994-07-14','未冻结','1'),(2,'201311701325','eechon','a3590023df66ac92ae35e3316026d17d','巫逸聪','女',20,'2015-03-31','未冻结','2');
+INSERT INTO `user` VALUES (1,'lovedrose','e10adc3949ba59abbe56e057f20f883e','Rose','男',21,'1994-07-14','未冻结','1',NULL),(2,'eechon','a3590023df66ac92ae35e3316026d17d','巫逸聪','女',20,'2015-03-31','未冻结','2',NULL),(3,'201311701326','e10adc3949ba59abbe56e057f20f883e','lovedrose','男',20,'2015-03-20','未冻结','3',NULL),(5,'201311701325','3d9188577cc9bfe9291ac66b5cc872b7','煞笔','男',18,'2015-03-20','未冻结','defaultHeadImage','18320303378'),(6,'201311701301','e10adc3949ba59abbe56e057f20f883e','test','男',21,'1995-12-08','未冻结','defaultHeadImage','18344067421'),(7,'201311701302','e10adc3949ba59abbe56e057f20f883e','test01','男',21,'1997-12-08','未冻结','defaultHeadImage','18344067421');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -147,4 +262,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-26 23:51:50
+-- Dump completed on 2015-12-11 17:30:51

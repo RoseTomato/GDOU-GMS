@@ -229,4 +229,22 @@ public abstract class BaseService<T> implements IService<T> {
         logger.debug("==>");
         return result;
     }
+
+    @Override
+    public List<T> findAllByProperty(String propertyName, Object value) {
+        logger.debug("<==[propertyName:" +propertyName + ", value:" + value + "]");
+        List<T> result = null;
+        try {
+            Example example = new Example(clazz);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andEqualTo(propertyName, value);
+
+            result = selectByExample(example);
+        } catch (Exception e) {
+            logger.error("error:" + e.getMessage());
+            e.printStackTrace();
+        }
+        logger.debug("==>");
+        return result;
+    }
 }

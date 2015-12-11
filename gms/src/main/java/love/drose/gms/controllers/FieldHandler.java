@@ -1,7 +1,9 @@
 package love.drose.gms.controllers;
 
 import love.drose.gms.models.Field;
+import love.drose.gms.models.SecondCategory;
 import love.drose.gms.services.FieldService;
+import love.drose.gms.services.SecondCategoryService;
 import love.drose.gms.utils.DWZJsonUtil;
 import love.drose.gms.utils.Page;
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * Created by lovedrose on 2015/11/27.
@@ -24,6 +28,27 @@ public class FieldHandler extends BaseHandler {
 
     @Autowired
     private FieldService fieldService;
+
+    @Autowired
+    private SecondCategoryService secondCategoryService;
+
+    @RequestMapping("/toAddField")
+    public ModelAndView toAddField() {
+        logger.debug("<==");
+        ModelAndView modelAndView = new ModelAndView();
+        try {
+            // 获取所有二级分类
+            List<SecondCategory> secondCategories = secondCategoryService.findAll();
+            modelAndView.addObject("secondCategories", secondCategories);
+            modelAndView.setViewName(TO_ADD_FIELD);
+        } catch (Exception e) {
+            logger.error("error:" + e.getMessage());
+            modelAndView.setViewName(NO_RESOURCE);
+            e.printStackTrace();
+        }
+        logger.debug("==>");
+        return modelAndView;
+    }
 
     @ResponseBody
     @RequestMapping(value = "/addField", method = RequestMethod.POST)
@@ -70,9 +95,13 @@ public class FieldHandler extends BaseHandler {
         logger.debug("<== [id:" + id + "]");
         ModelAndView modelAndView = new ModelAndView();
         try {
-            // 获取场地分页数据
             Field field = fieldService.findById(id);
+            SecondCategory secondCategory = secondCategoryService.findById(field.getCategoryId());
+            List<SecondCategory> secondCategories = secondCategoryService.findAll();
+
+            modelAndView.addObject("secondCategories", secondCategories);
             modelAndView.addObject("field", field);
+            modelAndView.addObject("secondCategory", secondCategory);
             modelAndView.setViewName(TO_DETAILD_FIELD);
         } catch (Exception e) {
             logger.error("error:" + e.getMessage());

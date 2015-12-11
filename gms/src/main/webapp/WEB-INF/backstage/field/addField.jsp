@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8"%>
 <%@ page isELIgnored="false" %>
@@ -29,6 +30,29 @@
                 <dt>租金</dt>
                 <dd>
                     <input type="text" name="fee">
+                </dd>
+            </dl>
+            <dl>
+                <dt>使用类型</dt>
+                <dd>
+                    <input type="radio" name="useType" value="按次"/>按次&nbsp;
+                    <input type="radio" name="useType" value="按时"/>按时
+                </dd>
+            </dl>
+            <dl>
+                <dt>可容纳人数</dt>
+                <dd>
+                    <input type="text" name="galleryful">
+                </dd>
+            </dl>
+            <dl>
+                <dt>所属类型</dt>
+                <dd>
+                    <select name="category_id">
+                        <c:forEach items="${secondCategories}" var="sc">
+                            <option value="${sc.id}">${sc.name}</option>
+                        </c:forEach>
+                    </select>
                 </dd>
             </dl>
         </div>

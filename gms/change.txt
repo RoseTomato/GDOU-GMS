@@ -69,3 +69,13 @@
     2.修改了User模型去除了sno属性，新增phone属性
     3.修改了数据库user表
     4.修改了addUser，listUser，detailUser页面
+= = = = = = = = = = = = = = = = = =
+时间 2015-12-11 17:28
+作者：lovedrose
+描述：
+    1.修改了场地模型以及对应的数据库表
+    2.新增了使用场地模型（UseField）、一级分类（FirstCategory）、二级分类（SecondCategory）
+    3.新增mapper接口：FirstCategoryMapper, SecondCategoryMapper, UseFieldMapper
+    4.新增service接口：UseFieldService, FirstCategoryService, SecondCategory.
+    5.修改了addField、listField、detailField页面
+    6.更新了sql文件

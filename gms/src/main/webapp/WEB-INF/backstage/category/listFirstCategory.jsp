@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<form id="pagerForm" method="post" action="${pageContext.request.contextPath}/fieldHandler/listfield">
+<form id="pagerForm" method="post" action="${pageContext.request.contextPath}/categoryHandler/listFirstCategory">
     <%-- 	<input type="hidden" name="status" value="${param.status}">
         <input type="hidden" name="orderField" value="${param.orderField}" />
         <input type="hidden" name="keywords" value="${param.keywords}" /> --%>
@@ -19,13 +19,12 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="edit"
-                   href="${pageContext.request.contextPath}/fieldHandler/detailField?id={fieldId}"
-                   target="navTab" title="查看场地详情"><span>查看场地详情</span></a></li>
-            <li><a class="delete" href="${pageContext.request.contextPath}/fieldHandler/deletefield?id={fieldId}"
-                   target="ajaxTodo" title="确定要停用吗?"><span>停用</span></a></li>
-            <li><a class="add" href="${pageContext.request.contextPath}/fieldHandler/deletefield?id={fieldId}"
-                   target="ajaxTodo" title="确定要恢复吗?"><span>恢复</span></a></li>
+            <li><a class="delete" href="${pageContext.request.contextPath}/categoryHandler/deleteFirstCategory?id={firstCategoryId}"
+                   target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+            <li><a class="add" href="${pageContext.request.contextPath}/categoryHandler/toAddSecondCategory?id={firstCategoryId}"
+                   target="navTab" title="添加二级分类"><span>添加二级分类</span></a></li>
+            <li><a class="edit" href="${pageContext.request.contextPath}/categoryHandler/listSecondCategory?parentId={firstCategoryId}"
+                   target="navTab" title="查看子分类" rel="showSecondCategories"><span>查看子分类</span></a></li>
             <li class="line">line</li>
         </ul>
     </div>
@@ -33,24 +32,14 @@
         <thead>
         <tr align="center">
             <th >ID</th>
-            <th >场地名</th>
-            <th >描述</th>
-            <th >租金(元/时)</th>
-            <th >状态</th>
-            <th >使用类型</th>
-            <th >可容纳人数</th>
+            <th >一级分类名称</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${page.list}" var="field">
-            <tr target="fieldId" rel="${field.id }" align="center">
-                <td>${field.id }</td>
-                <td >${field.name }</td>
-                <td>${field.description}</td>
-                <td>${field.fee}</td>
-                <td>${field.state}</td>
-                <td>${field.useType}</td>
-                <td>${field.galleryful}</td>
+        <c:forEach items="${page.list}" var="firstCategory">
+            <tr target="firstCategoryId" rel="${firstCategory.id }" align="center">
+                <td>${firstCategory.id }</td>
+                <td >${firstCategory.name }</td>
             </tr>
         </c:forEach>
         </tbody>
