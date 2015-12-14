@@ -32,10 +32,11 @@ CREATE TABLE `field` (
   `galleryful` int(11) NOT NULL,
   `image` varchar(40) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
+  `current_number` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_category_id` (`category_id`),
   CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `second_category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +45,7 @@ CREATE TABLE `field` (
 
 LOCK TABLES `field` WRITE;
 /*!40000 ALTER TABLE `field` DISABLE KEYS */;
-INSERT INTO `field` VALUES (1,'篮球场A','提供篮球活动场所',50,'可使用','按次',100,'defaultImage',NULL);
+INSERT INTO `field` VALUES (1,'篮球场A','提供篮球活动场所',50,'可使用','按次',100,'defaultImage',1,35),(2,'羽毛球场A','位于馆内大厅',30,'可使用','按次',10,'defaultImage',2,8),(3,'篮球场B','位于馆外东侧',50,'可使用','按次',100,'defaultImage',1,10),(4,'羽毛球场B','位于馆内大厅',10,'可使用','按次',10,'defaultImage',2,0),(5,'足球场A','位于东区体育场，2000平米',5,'可使用','按次',1000,'defaultImage',3,0),(6,'健身房','位于馆内东侧',5,'可使用','按次',100,'defaultImage',4,0),(7,'瑜伽房','练习瑜伽的',5,'可使用','按次',20,'defaultImage',5,0),(8,'普拉提房','测试',5,'可使用','按次',15,'defaultImage',6,0),(9,'篮球场C','',44,'可使用','按次',200,'defaultImage',1,0),(10,'羽毛球场C','',15,'可使用','按次',20,'defaultImage',2,0);
 /*!40000 ALTER TABLE `field` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +60,7 @@ CREATE TABLE `first_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +69,7 @@ CREATE TABLE `first_category` (
 
 LOCK TABLES `first_category` WRITE;
 /*!40000 ALTER TABLE `first_category` DISABLE KEYS */;
-INSERT INTO `first_category` VALUES (1,'球类');
+INSERT INTO `first_category` VALUES (1,'球类'),(2,'健身');
 /*!40000 ALTER TABLE `first_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,7 +176,7 @@ CREATE TABLE `second_category` (
   PRIMARY KEY (`id`),
   KEY `fk_parent_id` (`parent_id`),
   CONSTRAINT `fk_parent_id` FOREIGN KEY (`parent_id`) REFERENCES `first_category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,7 +185,7 @@ CREATE TABLE `second_category` (
 
 LOCK TABLES `second_category` WRITE;
 /*!40000 ALTER TABLE `second_category` DISABLE KEYS */;
-INSERT INTO `second_category` VALUES (1,'篮球',1),(2,'羽毛球',1);
+INSERT INTO `second_category` VALUES (1,'篮球',1),(2,'羽毛球',1),(3,'足球',1),(4,'健身',2),(5,'瑜伽',2),(6,'普拉提',2);
 /*!40000 ALTER TABLE `second_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,4 +263,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-11 17:30:51
+-- Dump completed on 2015-12-14 11:05:42
