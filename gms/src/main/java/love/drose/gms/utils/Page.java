@@ -75,6 +75,14 @@ public class Page {
         }
     }
 
+    /**
+     * 判断是否有下一页分页数据
+     * @return
+     */
+    public Boolean hasNextPage() {
+        // 若总页数大于现在的页码，则有下一页
+        return getTotalPage() > getPageNum();
+    }
     /**=============================================setter and getter ===========================================*/
 
     public int getTotalPage() {

@@ -79,3 +79,8 @@
     4.新增service接口：UseFieldService, FirstCategoryService, SecondCategory.
     5.修改了addField、listField、detailField页面
     6.更新了sql文件
+= = = = = = = = = = = = = = = = = =
+时间 2015-12-11 17:28
+作者：lovedrose
+描述：
+    1.提供了iOS的分类获取接口，场地获取接口

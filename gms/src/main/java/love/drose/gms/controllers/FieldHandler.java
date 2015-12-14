@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lovedrose on 2015/11/27.
@@ -59,6 +61,8 @@ public class FieldHandler extends BaseHandler {
             field.setImage("defaultImage");
             // 设置默认状态
             field.setState("可使用");
+            // 默认当前使用人数0
+            field.setCurrentNumber(0);
             // 保存
             fieldService.save(field);
 
@@ -110,5 +114,54 @@ public class FieldHandler extends BaseHandler {
         }
         logger.debug("==>");
         return modelAndView;
+    }
+
+    /**
+     * iOS客户端获取场地分页数据
+     * @param pageNum - 当前页码
+     * @param pageSize - 页面大小
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/fetchFieldPageData")
+    public Object fetchFieldPageData(Integer pageNum, Integer pageSize) {
+        logger.debug("<== [pageNum:" + pageNum + ", pageSize:" + pageSize + "]");
+        Map<String, Object> map = new HashMap<String, Object>();
+        Boolean hasNext = false;
+        List<Field> fields = null;
+        try {
+            Page page = fieldService.getPageData(pageNum, pageSize);
+            fields = page.getList();
+            hasNext = page.hasNextPage();
+
+            map.put(RESULT, OK);
+            map.put(DATA, fields);
+            map.put("hasNext", hasNext);
+        } catch (Exception e) {
+            logger.error("==> error:" + e.getMessage());
+            map.put(RESULT, FAILURE);
+            e.printStackTrace();
+        }
+        logger.debug("==>");
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/fetchFields")
+    public Object fetchFields(Integer categoryId) {
+        logger.debug("<== [categoryId:" + categoryId + "]");
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<Field> fields = null;
+        try {
+            fields = fieldService.findAllByProperty("categoryId", categoryId);
+            map.put(RESULT, OK);
+            map.put(DATA, fields);
+        } catch (Exception e) {
+            logger.error("==> error:" + e.getMessage());
+            map.put(RESULT, FAILURE);
+            e.printStackTrace();
+        }
+        logger.debug("==>");
+        return map;
     }
 }

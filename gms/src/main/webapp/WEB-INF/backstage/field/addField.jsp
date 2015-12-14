@@ -48,7 +48,7 @@
             <dl>
                 <dt>所属类型</dt>
                 <dd>
-                    <select name="category_id">
+                    <select name="categoryId">
                         <c:forEach items="${secondCategories}" var="sc">
                             <option value="${sc.id}">${sc.name}</option>
                         </c:forEach>

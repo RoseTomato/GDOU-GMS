@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 分类处理器
@@ -156,5 +158,43 @@ public class CategoryHandler extends BaseHandler {
         }
         logger.debug("==>");
         return result;
+    }
+
+    @ResponseBody
+    @RequestMapping("/fetchFirstCategories")
+    public Object fetchFirstCategories() {
+        logger.debug("<== ");
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<FirstCategory> firstCategories = null;
+        try {
+            firstCategories = firstCategoryService.findAll();
+            map.put(RESULT, OK);
+            map.put(DATA, firstCategories);
+        } catch (Exception e) {
+            logger.error("==> error:" + e.getMessage());
+            map.put(RESULT, FAILURE);
+            e.printStackTrace();
+        }
+        logger.debug("==>");
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/fetchSecondCategories")
+    public Object fetchSecondCategories() {
+        logger.debug("<== ");
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<SecondCategory> secondCategories = null;
+        try {
+            secondCategories = secondCategoryService.findAll();
+            map.put(RESULT, OK);
+            map.put(DATA, secondCategories);
+        } catch (Exception e) {
+            logger.error("==> error:" + e.getMessage());
+            map.put(RESULT, FAILURE);
+            e.printStackTrace();
+        }
+        logger.debug("==>");
+        return map;
     }
 }

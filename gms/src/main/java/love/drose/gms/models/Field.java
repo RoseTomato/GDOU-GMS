@@ -37,7 +37,7 @@ public class Field {
      */
     private String image;
 
-    /**
+    /**`
      * 使用类型.
      */
     private String useType;
@@ -51,6 +51,11 @@ public class Field {
      * 二级分类id
      */
     private Integer categoryId;
+
+    /**
+     * 目前使用人数.
+     */
+    private Integer currentNumber;
 
 
     public Field() {
@@ -68,10 +73,11 @@ public class Field {
                 ", useType='" + useType + '\'' +
                 ", galleryful=" + galleryful +
                 ", categoryId=" + categoryId +
+                ", currentNumber=" + currentNumber +
                 '}';
     }
 
-    public Field(Integer id, String name, String description, Double fee, String state, String image, String useType, Integer galleryful, Integer categoryId) {
+    public Field(Integer id, String name, String description, Double fee, String state, String image, String useType, Integer galleryful, Integer categoryId, Integer currentNumber) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -81,6 +87,7 @@ public class Field {
         this.useType = useType;
         this.galleryful = galleryful;
         this.categoryId = categoryId;
+        this.currentNumber = currentNumber;
     }
 
     public Integer getId() {
@@ -153,5 +160,13 @@ public class Field {
 
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public Integer getCurrentNumber() {
+        return currentNumber;
+    }
+
+    public void setCurrentNumber(Integer currentNumber) {
+        this.currentNumber = currentNumber;
     }
 }
