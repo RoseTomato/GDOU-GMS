@@ -1,5 +1,6 @@
 package love.drose.gms.controllers;
 
+import love.drose.gms.models.DeviceUuid;
 import love.drose.gms.models.Manager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 处理后台基础事件.
  * Created by lovedrose on 2015/11/20.
@@ -21,7 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class BackstageHandler_ extends BaseHandler{
 
-    private static Logger logger =  LogManager.getLogger(BackstageHandler_.class.getName());
+//    private static Logger logger =  LogManager.getLogger(BackstageHandler_.class.getName());
 
     /**
      * 转到后台登陆页面
@@ -106,4 +110,40 @@ public class BackstageHandler_ extends BaseHandler{
         return NO_PRIVILEGE;
     }
 
+    /**
+     * 更新设备uuid
+     * @param uuid 设备标示
+     * @param userId 用户id
+     */
+    @RequestMapping(value = "/updateDeviceUuid", method = RequestMethod.POST)
+    public Object updateDeviceUuid(String uuid, Integer userId) {
+        logger.debug("<== [uuid:"+uuid+", userId:" + userId + "]");
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (userId == null) {
+            logger.debug("==>");
+            return map.put(RESULT, FAILURE);
+        } else if (uuid != null && !"".equals(uuid.trim())) {
+            DeviceUuid deviceUuid = deviceUuidService.findByUserId(userId);
+            if (deviceUuid != null) {
+                // 不相同更新
+                if (!uuid.trim().equals(deviceUuid.getUuid())) {
+                    deviceUuid.setUuid(uuid.trim());
+                    deviceUuidService.update(deviceUuid);
+                    map.put(RESULT, OK);
+                }
+            } else {
+                // 未有则添加
+                deviceUuid = new DeviceUuid();
+                deviceUuid.setUuid(uuid);
+                deviceUuid.setUserId(userId);
+
+                deviceUuidService.save(deviceUuid);
+                map.put(RESULT, OK);
+            }
+        } else {
+            map.put(RESULT, FAILURE);
+        }
+        logger.debug("==>");
+        return map;
+    }
 }

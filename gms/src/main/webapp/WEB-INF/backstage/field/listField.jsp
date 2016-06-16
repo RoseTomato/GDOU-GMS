@@ -22,9 +22,9 @@
             <li><a class="edit"
                    href="${pageContext.request.contextPath}/fieldHandler/detailField?id={fieldId}"
                    target="navTab" title="查看场地详情"><span>查看场地详情</span></a></li>
-            <li><a class="delete" href="${pageContext.request.contextPath}/fieldHandler/deletefield?id={fieldId}"
+            <li><a class="delete" href="${pageContext.request.contextPath}/fieldHandler/freezeField?id={fieldId}"
                    target="ajaxTodo" title="确定要停用吗?"><span>停用</span></a></li>
-            <li><a class="add" href="${pageContext.request.contextPath}/fieldHandler/deletefield?id={fieldId}"
+            <li><a class="add" href="${pageContext.request.contextPath}/fieldHandler/recoverField?id={fieldId}"
                    target="ajaxTodo" title="确定要恢复吗?"><span>恢复</span></a></li>
             <li class="line">line</li>
         </ul>

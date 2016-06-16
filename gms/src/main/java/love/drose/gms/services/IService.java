@@ -128,6 +128,5 @@ public interface IService<T> {
 
     List<T> findAllByProperty(String propertyName, Object value);
 
-
-    //TODO others...
+    //TODO others..
 }

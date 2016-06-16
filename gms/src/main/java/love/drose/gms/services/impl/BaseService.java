@@ -247,4 +247,5 @@ public abstract class BaseService<T> implements IService<T> {
         logger.debug("==>");
         return result;
     }
+
 }

@@ -33,13 +33,7 @@ import java.util.Map;
 @RequestMapping("/managerHandler")
 public class ManagerHandler extends BaseHandler {
 
-    private static Logger logger = LogManager.getLogger(ManagerHandler.class.getName());
-
-    @Autowired
-    private RoleService roleService;
-
-    @Autowired
-    private ManagerService managerService;
+//    private static Logger logger = LogManager.getLogger(ManagerHandler.class.getName());
 
     /**
      * 跳转到添加管理员页面

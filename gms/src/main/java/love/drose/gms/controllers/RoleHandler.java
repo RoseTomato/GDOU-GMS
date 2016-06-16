@@ -24,18 +24,7 @@ import java.util.*;
 @RequestMapping("/roleHandler")
 public class RoleHandler extends BaseHandler {
 
-    Logger logger = LogManager.getLogger(RoleHandler.class);
-
-    @Autowired
-    private RoleService roleService;
-
-    @Autowired
-    private ManagerService managerService;
-
-    @Autowired
-    private PrivilegeService privilegeService;
-
-    Map<String, String> result = null;
+//    Logger logger = LogManager.getLogger(RoleHandler.class);
 
     /**
      * 添加角色

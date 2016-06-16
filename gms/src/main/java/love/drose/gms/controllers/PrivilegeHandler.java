@@ -23,11 +23,7 @@ import java.util.Map;
 @RequestMapping("/privilegeHandler")
 public class PrivilegeHandler extends BaseHandler{
 
-    Logger logger = LogManager.getLogger(PrivilegeHandler.class);
-
-
-    @Autowired
-    private PrivilegeService privilegeService;
+//    Logger logger = LogManager.getLogger(PrivilegeHandler.class);
 
 
     @ResponseBody

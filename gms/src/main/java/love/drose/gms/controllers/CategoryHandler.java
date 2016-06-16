@@ -25,11 +25,6 @@ import java.util.Map;
 @RequestMapping("/categoryHandler")
 public class CategoryHandler extends BaseHandler {
 
-    @Autowired
-    private FirstCategoryService firstCategoryService;
-    @Autowired
-    private SecondCategoryService secondCategoryService;
-
     /**
      * 新增一级分类
      * @param name

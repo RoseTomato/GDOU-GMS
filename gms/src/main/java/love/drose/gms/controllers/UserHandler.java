@@ -1,5 +1,7 @@
 package love.drose.gms.controllers;
 
+import love.drose.gms.models.DeviceUuid;
+import love.drose.gms.models.Pocket;
 import love.drose.gms.models.User;
 import love.drose.gms.services.UserService;
 import love.drose.gms.utils.DWZJsonUtil;
@@ -31,10 +33,7 @@ import java.util.Map;
 @RequestMapping("/userHandler")
 public class UserHandler extends BaseHandler {
 
-    Logger logger = LogManager.getLogger(UserHandler.class);
-
-    @Autowired
-    private UserService userService;
+//    Logger logger = LogManager.getLogger(UserHandler.class);
 
     @ResponseBody
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
@@ -209,19 +208,38 @@ public class UserHandler extends BaseHandler {
 
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Object login(String username, String password) {
-        logger.debug("<== [username:" + username + ", password:" + password + "]");
+    public Object login(String username, String password, String deviceToken) {
+        logger.debug("<== [username:" + username + ", password:" + password + ", deviceToken"+deviceToken+"]");
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             // 根据用户名和密码找到用户
             User user = userService.findByUsernameAndPassword(username, password);
             if (user != null) {
-                map.put("result", "ok");
-                map.put("data", user);
+
+                // 更新设备标识
+                DeviceUuid deviceUuid = deviceUuidService.findByUserId(user.getId());
+                if (deviceUuid != null) {
+                    deviceUuid.setUuid(deviceToken);
+                    deviceUuidService.update(deviceUuid);
+                } else {
+                    deviceUuid = new DeviceUuid();
+                    deviceUuid.setUserId(user.getId());
+                    deviceUuid.setUuid(deviceToken);
+
+                    deviceUuidService.save(deviceUuid);
+                }
+
+                if (user.getState().equals("未冻结")) {
+                    map.put(RESULT, OK);
+                } else {
+                    map.put(RESULT, FAILURE);
+                }
+                map.put(DATA, user);
             } else {
-                map.put("result", "failure");
+                map.put(RESULT, FAILURE);
             }
         } catch (Exception e) {
+            map.put(RESULT, FAILURE);
             logger.error("==> error:" + e.getMessage());
             e.printStackTrace();
         }
@@ -271,6 +289,12 @@ public class UserHandler extends BaseHandler {
 
             // 新增用户
             userService.save(user);
+
+            // 钱包
+            user = userService.findByUsernameAndPassword(username, password);
+            Pocket pocket = new Pocket();
+            pocket.setUserId(user.getId());
+            pocket.setMoney(0.0);
 
             map.put("result", "ok");
         } catch (Exception e) {

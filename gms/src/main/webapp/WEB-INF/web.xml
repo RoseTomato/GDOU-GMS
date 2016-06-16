@@ -45,7 +45,12 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    
+
+    <!--定时任务管理器-->
+    <listener>
+        <listener-class>love.drose.gms.listener.TaskManager</listener-class>
+    </listener>
+
     <!--配置springMVC-->
     <servlet>
         <servlet-name>springDispatcherServlet</servlet-name>

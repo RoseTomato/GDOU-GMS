@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2015/11/21.
  */
+@SuppressWarnings("ALL")
 public class TestPrivilegeService extends BaseTest {
 
     @Autowired

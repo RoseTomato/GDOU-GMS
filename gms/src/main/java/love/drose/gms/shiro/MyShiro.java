@@ -56,11 +56,11 @@ public class MyShiro extends AuthorizingRealm {
             // 测试：假设admin是超级管理员
             Set<String> roles = managerService.findRolesOfManagerById(manager.getId());
             info.setRoles(roles);
-            // 添加用户所有的权限，如果只使用角色定义访问权限，下面4行可以不要
-            for (String roleName : roles) {
-                Role role = roleService.findByName(roleName);
-                info.addStringPermissions(privilegeService.findPrivilegesOfRoleById(role.getId()));
-            }
+//            添加用户所有的权限，如果只使用角色定义访问权限，下面4行可以不要
+//            for (String roleName : roles) {
+//                Role role = roleService.findByName(roleName);
+//                info.addStringPermissions(privilegeService.findPrivilegesOfRoleById(role.getId()));
+//            }
 
             logger.debug("out ==>");
             return info;

@@ -19,6 +19,6 @@ public interface UserService extends IService<User> {
      * @param password
      * @return
      */
-    User findByUsernameAndPassword(String username, String password);
+    User findByUsernameAndPassword(String username, String password)  throws Exception;
 
 }

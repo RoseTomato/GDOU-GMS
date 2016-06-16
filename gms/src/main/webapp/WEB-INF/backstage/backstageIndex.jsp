@@ -134,12 +134,12 @@
                             </ul>
                         </li>
 
-                        <li><a>权限管理</a>
-                            <ul>
-                                <li><a href="${pageContext.request.contextPath}/forward_org_addPrivilege" target="dialog" title="新增权限">新增权限</a></li>
-                                <li><a href="${pageContext.request.contextPath}/privilegeHandler/listPrivilege?pageNum=1&pageSize=20" target="navTab" rel="showPrivileges" title="权限列表">查看所有权限</a></li>
-                            </ul>
-                        </li>
+                        <%--<li><a>权限管理</a>--%>
+                            <%--<ul>--%>
+                                <%--<li><a href="${pageContext.request.contextPath}/forward_org_addPrivilege" target="dialog" title="新增权限">新增权限</a></li>--%>
+                                <%--<li><a href="${pageContext.request.contextPath}/privilegeHandler/listPrivilege?pageNum=1&pageSize=20" target="navTab" rel="showPrivileges" title="权限列表">查看所有权限</a></li>--%>
+                            <%--</ul>--%>
+                        <%--</li>--%>
                     </ul>
                 </div>
                 </shiro:hasAnyRoles>
@@ -174,6 +174,8 @@
                     <ul class="tree treeFolder">
                         <li><a href="${pageContext.request.contextPath}/fieldHandler/toAddField" target="navTab" title="新增场地">新增场地</a></li>
                         <li><a href="${pageContext.request.contextPath}/fieldHandler/listField?pageNum=1&pageSize=20" target="navTab" rel="showFields" title="查看所有场地">查看所有场地</a></li>
+                        <li><a href="${pageContext.request.contextPath}/forward_field_addNotice" target="navTab" title="添加公告">添加公告</a></li>
+                        <li><a href="${pageContext.request.contextPath}/fieldHandler/listNotices?pageNum=1&pageSize=20" target="navTab" rel="showNotices" title="查看场地公告">查看场地公告</a></li>
                     </ul>
                 </div>
                 </shiro:hasAnyRoles>
@@ -183,8 +185,8 @@
                 </div>
                 <div class="accordionContent">
                     <ul class="tree treeFolder">
-                        <li><a href="" target="navTab" rel="">新增场地</a></li>
-                        <li><a href="" target="navTab" rel="">查询场地</a></li>
+                        <li><a href="${pageContext.request.contextPath}/equipmentHandler/toAddEquipment" target="navTab" title="新增器材">新增器材</a></li>
+                        <li><a href="${pageContext.request.contextPath}/equipmentHandler/listEquipment?pageNum=1&pageSize=20" target="navTab" rel="showEquipment" title="查看器材">查看所有器材</a></li>
                     </ul>
                 </div>
                 </shiro:hasAnyRoles>
@@ -194,10 +196,35 @@
                 </div>
                 <div class="accordionContent">
                     <ul class="tree treeFolder">
-                        <li><a href="" target="navTab" rel="">新增场地</a></li>
-                        <li><a href="" target="navTab" rel="">查询场地</a></li>
+                        <li><a href="${pageContext.request.contextPath}/competitionHandler/listUncheckCompetitions?pageNum=1&pageSize=20" target="navTab" rel="showUncheckCompeitions" title="待审核的赛事">待审核的赛事</a></li>
+                        <li><a href="${pageContext.request.contextPath}/competitionHandler/listCheckedCompetitions?pageNum=1&pageSize=20" target="navTab" rel="showCheckedCompeitions" title="已审核的赛事">已审核的赛事</a></li>
+                        <li><a href="${pageContext.request.contextPath}/competitionHandler/listCompetitions?pageNum=1&pageSize=20" target="navTab" rel="showCompetitions" title="所有赛事">所有赛事</a></li>
                     </ul>
                 </div>
+                </shiro:hasAnyRoles>
+                <shiro:hasAnyRoles name="超级管理员">
+                    <div class="accordionHeader">
+                        <h2><span>Folder</span>活动管理</h2>
+                    </div>
+                    <div class="accordionContent">
+                        <ul class="tree treeFolder">
+                            <li><a href="${pageContext.request.contextPath}/activityHandler/forward_activity_addActivity" target="navTab" title="添加活动">添加活动</a></li>
+                        </ul>
+                    </div>
+                </shiro:hasAnyRoles>
+                <shiro:hasAnyRoles name="超级管理员">
+                    <div class="accordionHeader">
+                        <h2><span>Folder</span>财务管理</h2>
+                    </div>
+                    <div class="accordionContent">
+                        <ul class="tree treeFolder">
+                            <li><a href="${pageContext.request.contextPath}/forward_finance_recharge" target="navTab" title="充值">充值</a></li>
+                            <li><a href="${pageContext.request.contextPath}/financeHandler/listRechargedRecord?pageNum=1&pageSize=20" target="navTab" rel="showRechargedRecords" title="充值记录">充值记录</a></li>
+                            <li><a href="${pageContext.request.contextPath}/forward_finance_paySalary" target="navTab" title="分配员工薪资">分配员工薪资</a></li>
+                            <li><a href="${pageContext.request.contextPath}/financeHandler/listSalaryRecord?pageNum=1&pageSize=20" target="navTab" rel="showSalaryRecords" title="分配记录">分配记录</a></li>
+                            <li><a href="${pageContext.request.contextPath}/financeHandler/toShowCurrentDayTurnover" target="navTab"title="当日营业额">当日营业额</a></li>
+                        </ul>
+                    </div>
                 </shiro:hasAnyRoles>
             </div>
         </div>

@@ -38,10 +38,10 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     }
 
     @Override
-    public User findByUsernameAndPassword(String username, String password) {
+    public User findByUsernameAndPassword(String username, String password) throws Exception {
         logger.debug("in <==");
         User user = null;
-        try {
+
             Example example = new Example(User.class);
             Example.Criteria criteria = example.createCriteria();
 
@@ -51,11 +51,6 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
             if (users.size() > 0) {
                 user = users.get(0);
             }
-        } catch (Exception e) {
-            logger.error("error:"+e.getMessage());
-            e.printStackTrace();
-        }
-
         logger.debug("out ==>");
         return user;
     }

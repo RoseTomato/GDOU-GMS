@@ -19,7 +19,7 @@
             <dl>
                 <dt>场地名：</dt>
                 <dd>
-                    <input type="text" name="name"  readonly="readonly" class="required" value="${field.name }"  >
+                    <input type="text" name="name"  class="required" value="${field.name }"  >
                 </dd>
 
             </dl>
@@ -27,6 +27,12 @@
                 <dt>描述：</dt>
                 <dd>
                     <textarea name="description">${field.description}</textarea>
+                </dd>
+            </dl>
+            <dl>
+                <dt>费用：</dt>
+                <dd>
+                    <textarea name="fee">${field.fee}</textarea>
                 </dd>
             </dl>
             <dl>
@@ -39,6 +45,12 @@
                 <dt>可容纳人数：</dt>
                 <dd>
                     <input  type="text" name="galleryful" value="${field.galleryful }">
+                </dd>
+            </dl>
+            <dl>
+                <dt>现在使用人数：</dt>
+                <dd>
+                    <input  type="text" name="currentNumber" value="${field.currentNumber }">
                 </dd>
             </dl>
             <dl>

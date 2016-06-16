@@ -50,7 +50,20 @@ public class UseField {
      */
     private Integer appoint;
 
+    /**
+     * 状态：有效，失效
+     */
+    private String state;
+
     public UseField() {
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     @Override
@@ -63,10 +76,11 @@ public class UseField {
                 ", userId=" + userId +
                 ", fieldId=" + fieldId +
                 ", appoint=" + appoint +
+                ", state='" + state + '\'' +
                 '}';
     }
 
-    public UseField(Integer id, Date createTime, Date startTime, Double duration, Integer userId, Integer fieldId, Integer appoint) {
+    public UseField(Integer id, Date createTime, Date startTime, Double duration, Integer userId, Integer fieldId, Integer appoint, String state) {
         this.id = id;
         this.createTime = createTime;
         this.startTime = startTime;
@@ -74,6 +88,7 @@ public class UseField {
         this.userId = userId;
         this.fieldId = fieldId;
         this.appoint = appoint;
+        this.state = state;
     }
 
     public Integer getId() {
